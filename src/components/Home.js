@@ -30,12 +30,7 @@ return (
         : null
       }
       
-      { 
-        props.loggedInStatus ? 
-        <Link to='/' onClick={handleClick}>Log Out</Link> 
-        : 
-        null
-      }
+
     </div>
     </div>
   );

@@ -18,6 +18,21 @@
 
 }
 
+.Stock-Down {
+  color: rgb(255, 0, 0)
+}
+
+.Stock-Up {
+  color: rgb(0, 255, 0)
+}
+
+.Navbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

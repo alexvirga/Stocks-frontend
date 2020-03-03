@@ -6,6 +6,9 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
+import Navbar from './components/Navbar'
+
+console.log(process.env.REACT_APP_API_KEY)
 
 class App extends Component {
   state = {
@@ -49,13 +52,15 @@ class App extends Component {
     return (
       <div>
         <BrowserRouter>
+        {this.state.isLoggedIn ?
+        <Navbar handleLogout={this.handleLogout} /> : null}
           <Switch>
             <Route
               exact
               path="/"
               render={props => ( 
                 this.state.isLoggedIn ? 
-                <Dashboard handleLogout={this.handleLogout} /> :
+                <Dashboard/> :
                 <Home
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.isLoggedIn}
@@ -91,6 +96,8 @@ class App extends Component {
                 <Dashboard />
               
               )}
+            />
+
             />
 
           </Switch>
