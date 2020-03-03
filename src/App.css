@@ -2,6 +2,22 @@
   text-align: center;
 }
 
+.Homepage {
+  display: flex;
+  flex-direction: row;
+  height: 100vh
+}
+
+.Homepage-background {
+  display: flex;
+  flex: 2;
+  background-image: url("https://images.unsplash.com/photo-1512034264389-39825486c40a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=981&q=80");
+  background-size: cover;
+  background-attachment: inherit;
+  background-position: bottom;
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -23,6 +39,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 .App-link {
   color: #61dafb;
