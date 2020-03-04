@@ -17,9 +17,11 @@ class Navbar extends Component{
   };
 
   render() {
+      console.log(this.props.user)
   return (
     <div className="Navbar">
-   <h1> Nav Bar</h1>
+   <h1> {this.props.user.username}</h1>
+   <h1> {this.props.user.balance} </h1>
         <Link to="/" onClick={this.handleClick}>
           Log Out
         </Link>

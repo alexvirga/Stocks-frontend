@@ -17,13 +17,13 @@ class ShowStock extends Component {
 
 
     return (
-        
-      <div>
-        <h1> {this.props.stock.symbol} </h1>
-        <h1> {this.props.stock.latestPrice} </h1>
-        <p> </p>
-        <h1 className={this.performance()}> {dollarChange} {percentChange} </h1>
+
+      <div className={"StockView"}>
+        <h3> {this.props.stock.symbol} </h3>
+        <h2> {this.props.stock.latestPrice} </h2>
+        <p className={this.performance()}> {dollarChange} {percentChange} </p>
       </div>
+  
     );
   }
 }

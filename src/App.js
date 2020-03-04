@@ -8,7 +8,7 @@ import Signup from "./components/registrations/Signup";
 import "./App.css";
 import Navbar from './components/Navbar'
 
-console.log(process.env.REACT_APP_API_KEY)
+// console.log(process.env.REACT_APP_API_KEY)
 
 class App extends Component {
   state = {
@@ -24,7 +24,11 @@ class App extends Component {
       .get("http://localhost:3001/logged_in", { withCredentials: true })
       .then(response => {
         if (response.data.logged_in) {
-          this.handleLogin(response);
+          this.setState({
+            user: response.data.user,
+            isLoggedIn: true
+      
+          });
         } else {
           this.handleLogout();
         }
@@ -34,9 +38,11 @@ class App extends Component {
 
   handleLogin = data => {
     this.setState({
-      isLoggedIn: true,
-      user: data.user
+      user: data.user,
+      isLoggedIn: true
+
     });
+ 
     
   };
 
@@ -53,7 +59,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
         {this.state.isLoggedIn ?
-        <Navbar handleLogout={this.handleLogout} /> : null}
+        <Navbar user={this.state.user} handleLogout={this.handleLogout} /> : null}
           <Switch>
             <Route
               exact

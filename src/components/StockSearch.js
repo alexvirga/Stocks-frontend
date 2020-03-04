@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ShowStock from './ShowStock'
+import ShowStock from "./ShowStock";
 
 class StockSearch extends Component {
   state = {
     ticker: "",
-    selectedStock: []
+    search: []
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
+  handleSubmit = symbol => {
     axios
       .get(
-        `https://sandbox.iexapis.com/stable/stock/${this.state.ticker}/quote?token=Tpk_e49c5833ad894266a16bfa7a44bed4d6`
+        `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.REACT_APP_API_KEY}`
       )
       .then(
         response => {
-          this.setState({ selectedStock: response.data });
+          this.props.handleSearch(response.data);
+          this.setState({ search: "" });
         },
         error => {
           console.log(error);
@@ -26,25 +26,53 @@ class StockSearch extends Component {
 
   handleChange = event => {
     this.setState({ ticker: event.target.value });
+
+    axios
+      .get(
+        // `https://cloud.iexapis.com/stable/stock/${this.state.ticker}/quote?token=${process.env.REACT_APP_API_KEY}`
+        `https://sandbox.iexapis.com/stable/search/${event.target.value}?token=Tsk_b220f21891584710a33a3e2ca16f2c8e`
+      )
+      .then(
+        response => {
+          this.setState({ search: response.data });
+        },
+        error => {
+          this.setState({ search: [] });
+        }
+      );
+  };
+
+  handleClick = symbol => {
+    this.setState({ ticker: symbol });
+    this.handleSubmit(symbol);
   };
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="Ticker"
-            type="text"
-            name="ticker"
-            value={this.state.ticker}
-            onChange={this.handleChange}
-          />
-          <button placeholder="submit" type="submit">
+        <input
+          placeholder="Ticker"
+          type="text"
+          name="ticker"
+          value={this.state.ticker}
+          onChange={this.handleChange}
+        />
+        {/* <button placeholder="submit" type="submit">
             Search
-          </button>
-          {this.state.selectedStock ? 
-          <ShowStock stock={this.state.selectedStock}/> : null }
-        </form>
+          </button> */}
+
+        {this.state.search ? (
+          <div className={"SearchBar"}>
+            {this.state.search.slice(0, 5).map(suggestion => (
+              <p
+                key={suggestion.symbol}
+                onClick={() => this.handleClick(suggestion.symbol)}
+              >
+                {suggestion.symbol}
+              </p>
+            ))}
+          </div>
+        ) : null}
       </div>
     );
   }

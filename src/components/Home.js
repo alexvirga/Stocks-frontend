@@ -5,14 +5,6 @@ import {Link} from 'react-router-dom'
 const Home = (props) => {
   
 
-const handleClick = () => {
-    axios.delete('http://localhost:3001/logout', {withCredentials: true})
-    .then(response => {
-      props.handleLogout()
-      props.history.push('/')
-    })
-    .catch(error => console.log(error))
-  }
 return (
   <div className="Homepage">
     <div className="Homepage-background">
