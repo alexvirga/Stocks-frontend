@@ -31,6 +31,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  
 }
 
 .App-logo {
@@ -42,6 +43,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: auto
+}
+
+h4{
+  margin: 10px 0px 10px 0px
 }
 
 .StockView {
@@ -52,6 +58,19 @@
   flex-direction: column;
   background-color: white;
   transition-duration: .3s
+}
+
+.Transaction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* margin: 10px 0px 10px 0px */
+}
+
+.Transactions-Container {
+  display: flex;
+  flex-direction: column;
+
 }
 
 .StockView:hover {

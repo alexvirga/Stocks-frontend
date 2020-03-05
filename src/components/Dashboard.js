@@ -3,6 +3,7 @@ import StockSearch from "./StockSearch";
 import ShowStock from "./ShowStock";
 import axios from "axios";
 import { UserContext } from "../userContext";
+import Transactions from './Transactions'
 
 class Dashboard extends Component {
   static contextType = UserContext;
@@ -13,10 +14,11 @@ class Dashboard extends Component {
     user: {}
   };
 
-  componentDidMount() {
-    axios
+  async componentDidMount() {
+    await axios
       .get("http://localhost:3001/logged_in", { withCredentials: true })
       .then(response => {
+        console.log(response.data.user)
         
         if (response.data.logged_in) {
           this.setState({
@@ -31,29 +33,21 @@ class Dashboard extends Component {
   };
 
   handlePurchase = async (price, user, qty, symbol) => {
-    
     this.postStocktoLedger(price,user,qty,symbol)
-    // let orderCost = price * qty;
-    // let newBalance = this.state.user.balance - orderCost;
-    // const response = await axios.put(`http://localhost:3001/users/${user.id}`, {
-    //   balance: newBalance
-    // });
+    let orderCost = price * qty;
+    let newBalance = this.state.user.balance - orderCost;
+    const response = await axios.put(`http://localhost:3001/users/${user.id}`, {
+      balance: newBalance
+    });
 
-
-
-    // // .then(resp => console.log(resp.data))
-    // // .catch(error => console.log('api errors:', error))
-    // this.setState({ user: response.data });
+    // .then(resp => console.log(resp.data))
+    // .catch(error => console.log('api errors:', error))
+    this.setState({ user: response.data, viewStock: false });
    
   };
 
   postStocktoLedger = (price, user, qty, symbol) => {
-    // let purchasedStock = {
-    //   stock: symbol,
-    //   user: user.id,
-    //   cost_per_share: price,
-    //   quantity: qty
-    // };
+
     console.log(user)
     axios
       .post("http://localhost:3001/trades", { 
@@ -72,6 +66,8 @@ class Dashboard extends Component {
   };
 
   render() {
+
+
     return (
       <div className={"Dashboard"}>
         <h1>Dashboard</h1>
@@ -83,7 +79,10 @@ class Dashboard extends Component {
             handlePurchase={this.handlePurchase}
             user={this.state.user}
           />
+          
         ) : null}
+        
+        <Transactions user={this.props.user}/>
       </div>
     );
   }
