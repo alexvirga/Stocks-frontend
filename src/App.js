@@ -7,6 +7,7 @@ import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
 import Navbar from './components/Navbar'
+import {UserContext} from './userContext';
 
 // console.log(process.env.REACT_APP_API_KEY)
 
@@ -58,6 +59,7 @@ class App extends Component {
    
     return (
       <div>
+        <UserContext.Provider value={this.state.user}>
         <BrowserRouter>
         {this.state.isLoggedIn ?
         <Navbar user={this.state.user} handleLogout={this.handleLogout} /> : null}
@@ -67,8 +69,7 @@ class App extends Component {
               path="/"
               render={props => ( 
                 this.state.isLoggedIn ? 
-                <Dashboard
-                 user={this.state.user}/> :
+                <Dashboard/> :
                 <Home
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.isLoggedIn}
@@ -112,6 +113,7 @@ class App extends Component {
 
           </Switch>
         </BrowserRouter>
+        </UserContext.Provider>
       </div>
     );
   }

@@ -2,13 +2,19 @@ import React, {Component} from 'react'
 import StockSearch from './StockSearch'
 import ShowStock from './ShowStock'
 import axios from "axios";
+import {UserContext} from '../userContext';
+
 class Dashboard extends Component {
+
+  static contextType = UserContext;
 
   state = {
     selectedStock: [],
     viewStock: false,
     user: {}
   }
+
+  
 
 
 handleSearch = (data) => {
@@ -27,7 +33,7 @@ handlePurchase(price) {
 
 render() {
   
-  
+console.log(this.context)
 
 return (
       <div className={"Dashboard"}>
