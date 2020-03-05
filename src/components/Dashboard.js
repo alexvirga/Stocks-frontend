@@ -34,9 +34,11 @@ handleSearch = (data) => {
 
 
 
-handlePurchase = async(price, user) => {
+handlePurchase = async(price, user, qty) => {
+  let orderCost = price * qty
+  console.log(price, user, qty)
 
-  let newBalance = this.state.user.balance - price
+  let newBalance = this.state.user.balance - orderCost
   const response = await axios
   .put(`http://localhost:3001/users/${user.id}`, {balance: newBalance})
   // .then(resp => console.log(resp.data))
@@ -64,7 +66,7 @@ return (
         <h1> {this.state.user.balance} </h1>
         <StockSearch handleSearch={this.handleSearch} />
         {(this.state.viewStock) ? (
-        <ShowStock stock={this.state.selectedStock} handlePurchase={this.handlePurchase} user={this.props.user}/>
+        <ShowStock stock={this.state.selectedStock} handlePurchase={this.handlePurchase} user={this.state.user}/>
           ) : null}
       </div>
     );

@@ -43,7 +43,7 @@ class StockSearch extends Component {
   };
 
   handleClick = symbol => {
-    this.setState({ isSearching: false, ticker: symbol });
+    this.setState({ isSearching: false, ticker: ""});
     this.handleSubmit(symbol);
   };
 
