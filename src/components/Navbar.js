@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import {Link} from 'react-router-dom'
+import {UserContext} from '../userContext';
 
 class Navbar extends Component{
 
+    static contextType = UserContext;
 
   handleClick = () => {
     axios
@@ -28,8 +30,8 @@ class Navbar extends Component{
     //   console.log(this.props.user)
   return (
     <div className="Navbar">
-   <h1> {this.props.user.username}</h1>
-   <h1> {this.props.user.balance} </h1>
+   <h1> {this.context.username}</h1>
+   <h1> {this.context.balance} </h1>
    <button onClick={() => this.update()}> Buy </button>
         <Link to="/" onClick={this.handleClick}>
           Log Out

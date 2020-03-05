@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import {UserContext} from '../userContext';
 
 
 class ShowStock extends Component {
+
+    static contextType = UserContext;
+
+
 
  performance = () => {
      if (this.props.stock.change < 0){
@@ -24,7 +29,7 @@ class ShowStock extends Component {
         <h3> {this.props.stock.symbol} </h3>
         <h2> {this.props.stock.latestPrice} </h2>
         <p className={this.performance()}> {dollarChange} {percentChange} </p>
-        <button onClick={() => console.log(this.props.handlePurchase(this.props.stock.latestPrice))}> Buy something </button>
+        <button onClick={() => this.props.handlePurchase(this.props.stock.latestPrice, this.props.user )}> Buy something </button>
       </div>
   
     );

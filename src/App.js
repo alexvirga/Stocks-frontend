@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
-import Navbar from './components/Navbar'
-import {UserContext} from './userContext';
+import Navbar from "./components/Navbar";
+import { UserContext } from "./userContext";
 
 // console.log(process.env.REACT_APP_API_KEY)
 
@@ -28,7 +28,6 @@ class App extends Component {
           this.setState({
             user: response.data.user,
             isLoggedIn: true
-      
           });
         } else {
           this.handleLogout();
@@ -41,12 +40,8 @@ class App extends Component {
     this.setState({
       user: data.user,
       isLoggedIn: true
-
     });
- 
-    
   };
-
 
   handleLogout = () => {
     this.setState({
@@ -56,26 +51,29 @@ class App extends Component {
   };
 
   render() {
-   
     return (
       <div>
         <UserContext.Provider value={this.state.user}>
-        <BrowserRouter>
-        {this.state.isLoggedIn ?
-        <Navbar user={this.state.user} handleLogout={this.handleLogout} /> : null}
-          <Switch>
+          <BrowserRouter>
+            {this.state.isLoggedIn ? (
+              <Navbar user={this.state.user} handleLogout={this.handleLogout} />
+            ) : null}
+
             <Route
               exact
               path="/"
-              render={props => ( 
-                this.state.isLoggedIn ? 
-                <Dashboard/> :
-                <Home
-                  handleLogout={this.handleLogout}
-                  loggedInStatus={this.state.isLoggedIn}
-                />
-              )}
+              component={() =>
+                this.state.isLoggedIn ? (
+                  <Dashboard user={this.state.user} />
+                ) : (
+                  <Home
+                    handleLogout={this.handleLogout}
+                    loggedInStatus={this.state.isLoggedIn}
+                  />
+                )
+              }
             />
+
             <Route
               exact
               path="/login"
@@ -87,6 +85,7 @@ class App extends Component {
                 />
               )}
             />
+
             <Route
               exact
               path="/signup"
@@ -98,21 +97,13 @@ class App extends Component {
                 />
               )}
             />
-                        <Route
+
+            <Route
               exact
               path="/dashboard"
-              render={props => (
-                
-                <Dashboard
-                user={this.state.user}/>
-              
-              )}
+              render={props => <Dashboard user={this.state.user} />}
             />
-
-            />
-
-          </Switch>
-        </BrowserRouter>
+          </BrowserRouter>
         </UserContext.Provider>
       </div>
     );
