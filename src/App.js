@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/registrations/Login";
@@ -55,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+   
     return (
       <div>
         <BrowserRouter>
@@ -66,7 +67,8 @@ class App extends Component {
               path="/"
               render={props => ( 
                 this.state.isLoggedIn ? 
-                <Dashboard/> :
+                <Dashboard
+                 user={this.state.user}/> :
                 <Home
                   handleLogout={this.handleLogout}
                   loggedInStatus={this.state.isLoggedIn}
@@ -99,7 +101,9 @@ class App extends Component {
               exact
               path="/dashboard"
               render={props => (
-                <Dashboard />
+                
+                <Dashboard
+                user={this.state.user}/>
               
               )}
             />

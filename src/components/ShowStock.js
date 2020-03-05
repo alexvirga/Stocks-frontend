@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+
 
 class ShowStock extends Component {
 
@@ -9,6 +9,8 @@ class ShowStock extends Component {
      }
      else return "Stock-Up"
     }
+
+
     
   render() {
 
@@ -17,11 +19,12 @@ class ShowStock extends Component {
 
 
     return (
-
+    
       <div className={"StockView"}>
         <h3> {this.props.stock.symbol} </h3>
         <h2> {this.props.stock.latestPrice} </h2>
         <p className={this.performance()}> {dollarChange} {percentChange} </p>
+        <button onClick={() => console.log(this.props.handlePurchase(this.props.stock.latestPrice))}> Buy something </button>
       </div>
   
     );

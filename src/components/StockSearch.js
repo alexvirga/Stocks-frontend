@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import ShowStock from "./ShowStock";
 
 class StockSearch extends Component {
   state = {
     ticker: "",
-    search: []
+    search: [],
+    isSearching: false
   };
 
   handleSubmit = symbol => {
@@ -34,16 +34,16 @@ class StockSearch extends Component {
       )
       .then(
         response => {
-          this.setState({ search: response.data });
+          this.setState({ isSearching: true, search: response.data });
         },
         error => {
-          this.setState({ search: [] });
+          this.setState({ isSearching: false, search: [] });
         }
       );
   };
 
   handleClick = symbol => {
-    this.setState({ ticker: symbol });
+    this.setState({ isSearching: false, ticker: symbol });
     this.handleSubmit(symbol);
   };
 
@@ -57,12 +57,10 @@ class StockSearch extends Component {
           value={this.state.ticker}
           onChange={this.handleChange}
         />
-        {/* <button placeholder="submit" type="submit">
-            Search
-          </button> */}
 
-        {this.state.search ? (
+        {this.state.isSearching ? (
           <div className={"SearchBar"}>
+            <h4> STOCKS </h4>
             {this.state.search.slice(0, 5).map(suggestion => (
               <p
                 key={suggestion.symbol}
