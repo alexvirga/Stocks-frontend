@@ -36,10 +36,10 @@ class ShowStock extends Component {
         <p className={this.performance()}> {dollarChange} {percentChange} </p>
         <div style={{display:"flex", flexDirection:"row"}}>
         <h3> Shares </h3>
-        <input type="number" pattern="[^-,.]+" style={{alignSelf: "center"}} onChange={this.handleQtyChange}></input>
+        <input type="text"  style={{alignSelf: "center"}} onChange={this.handleQtyChange}></input>
         </div>
         
-        <button onClick={() => this.props.handlePurchase(this.props.stock.latestPrice, this.props.user, this.state.shareQty)}> Buy something </button>
+        <button onClick={() => this.props.handlePurchase(this.props.stock.latestPrice, this.props.user, this.state.shareQty, this.props.stock.symbol)}> Buy something </button>
       </div>
   
     );
