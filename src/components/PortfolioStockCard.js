@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-import {UserContext} from '../userContext';
+
 
 
 class PortfolioStockCard extends Component {
     state = {shareQty: 0}
 
-    static contextType = UserContext;
+ 
 
 
 
- performance = () => {
-     if (this.props.stock.change < 0){
-         return "Stock-Down"
-     }
-     else return "Stock-Up"
-    }
+//  performance = () => {
+//      if (this.props.stock.change < 0){
+//          return "Stock-Down"
+//      }
+//      else return "Stock-Up"
+//     }
 
 
 
@@ -28,10 +28,14 @@ class PortfolioStockCard extends Component {
 
     return (
     
+    
       <div className={"StockView"}>
-        <h4> {this.props.stock.stock} </h4>
-            <h4> {this.props.stock.quantity} </h4>
-            <h4> {this.props.stock.value} </h4>
+          {this.props.stocks ? 
+         <div> 
+            <h4> {this.props.stocks.stock} </h4>
+            <h4> {this.props.stocks.quantity} </h4>
+            <h4> {this.props.stocks.value} </h4>
+            </div> : <h1> loading </h1>}
       </div>
   
     );

@@ -6,7 +6,7 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
-import Navbar from "./components/Navbar";
+
 import { UserContext } from "./userContext";
 
 // console.log(process.env.REACT_APP_API_KEY)
@@ -55,9 +55,6 @@ class App extends Component {
       <div>
 
           <BrowserRouter>
-            {/* {this.state.isLoggedIn ? (
-              <Navbar user={this.state.user} handleLogout={this.handleLogout} />
-            ) : null} */}
 
             <Route
               exact

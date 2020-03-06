@@ -12,7 +12,8 @@ class Dashboard extends Component {
     viewStock: false,
     user: {},
     trades: [],
-    stockArr: []
+    stockArr: [],
+    isLoading: false
   };
 
   componentDidMount() {
@@ -40,19 +41,15 @@ class Dashboard extends Component {
 
   render() {
 
-    let uniqueStockArray = [...new Set(this.state.stockArr)]
-    let uniqueStockString = uniqueStockArray.toString()
+
     
   
-    // let stockArr = []
 
-    // this.state.isLoading ? 
-    // this.state.trades.map(stock => stockArr.push(stock.stock))
-    // let uniqueStockList= [...new Set(stockArr)].toString()
-    // console.log(uniqueStockList) ): null
 
     return (
+     
       <div className={"Dashboard"}>
+        
       <Navbar user={this.state.user} handleLogout={this.props.handleLogout} balance={this.state.user.balance} />
 
         <h1>Dashboard</h1>
@@ -67,8 +64,10 @@ class Dashboard extends Component {
           />
         ) : null}
 
+        {!this.state.isLoading ? 
+        <div>
         <Transactions user={this.state.user} trades={this.state.trades}  />
-        <Portfolio user={this.props.user} trades={this.state.trades} string={uniqueStockString} />
+        <Portfolio user={this.state.user} trades={this.state.trades} stockArr={this.state.stockArr} />  </div>: <h1> Loading</h1>}
       </div>
     );
   }

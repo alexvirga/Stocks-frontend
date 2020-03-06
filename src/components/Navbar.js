@@ -27,12 +27,12 @@ class Navbar extends Component{
 
 
   render() {
-    //   console.log(this.props.user)
+      console.log(this.props.user)
   return (
     <div className="Navbar">
-   <h1> {this.props.username}</h1>
+   <h1> {this.props.user.username}</h1>
    <h1> {this.props.balance} </h1>
-   <button onClick={() => this.update()}> Buy </button>
+  
         <Link to="/" onClick={this.handleClick}>
           Log Out
         </Link>
