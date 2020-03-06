@@ -53,7 +53,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <UserContext.Provider value={this.state.user}>
+
           <BrowserRouter>
             {this.state.isLoggedIn ? (
               <Navbar user={this.state.user} handleLogout={this.handleLogout} />
@@ -104,7 +104,7 @@ class App extends Component {
               render={props => <Dashboard user={this.state.user} />}
             />
           </BrowserRouter>
-        </UserContext.Provider>
+ 
       </div>
     );
   }

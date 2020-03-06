@@ -1,88 +1,71 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 import StockSearch from "./StockSearch";
 import ShowStock from "./ShowStock";
 import axios from "axios";
-import { UserContext } from "../userContext";
-import Transactions from './Transactions'
+import Transactions from "./Transactions";
+import Portfolio from "./Portfolio";
 
 class Dashboard extends Component {
-  static contextType = UserContext;
-
   state = {
     selectedStock: [],
     viewStock: false,
-    user: {}
+    user: {},
+    trades: [],
+    stockArr: []
   };
 
-  async componentDidMount() {
-    await axios
-      .get("http://localhost:3001/logged_in", { withCredentials: true })
-      .then(response => {
-        console.log(response.data.user)
-        
-        if (response.data.logged_in) {
-          this.setState({
-            user: response.data.user
-          });
-        }
-      });
+  componentDidMount() {
+    this.setState({isLoading: true})
+    axios
+      .get(`http://localhost:3001/users/${this.props.user.id}`)
+      .then(response =>
+        this.setState({
+          user: response.data,
+          trades: response.data.trades,
+          stockArr: response.data.trades.map(stock => stock.stock),
+          isLoading: false
+        })
+      );
   }
 
   handleSearch = data => {
     this.setState({ viewStock: true, selectedStock: data });
   };
 
-  handlePurchase = async (price, user, qty, symbol) => {
-    this.postStocktoLedger(price,user,qty,symbol)
-    let orderCost = price * qty;
-    let newBalance = this.state.user.balance - orderCost;
-    const response = await axios.put(`http://localhost:3001/users/${user.id}`, {
-      balance: newBalance
-    });
-
-    // .then(resp => console.log(resp.data))
-    // .catch(error => console.log('api errors:', error))
-    this.setState({ user: response.data, viewStock: false });
-   
-  };
-
-  postStocktoLedger = (price, user, qty, symbol) => {
-
-    console.log(user)
-    axios
-      .post("http://localhost:3001/trades", { 
-      stock: symbol,
-      user_id: user.id,
-      cost_per_share: price,
-      quantity: qty
-       })
-      .then(response => {
-        if (response.data.status === "created") {
-          console.log("created",response.data);
-        } else {
-          console.log(response);
-        }
-      });
+  handleStockPurchase = async user => {
+    this.setState({ user: user.data, trades:user.data.trades, viewStock: false });
+    console.log(user);
   };
 
   render() {
 
+    let uniqueStockArray = [...new Set(this.state.stockArr)]
+    let uniqueStockString = uniqueStockArray.toString()
+    
+  
+    // let stockArr = []
+
+    // this.state.isLoading ? 
+    // this.state.trades.map(stock => stockArr.push(stock.stock))
+    // let uniqueStockList= [...new Set(stockArr)].toString()
+    // console.log(uniqueStockList) ): null
 
     return (
       <div className={"Dashboard"}>
         <h1>Dashboard</h1>
-        <h1> {this.state.user.balance} </h1>
+
         <StockSearch handleSearch={this.handleSearch} />
+
         {this.state.viewStock ? (
           <ShowStock
             stock={this.state.selectedStock}
-            handlePurchase={this.handlePurchase}
-            user={this.state.user}
+            handlePurchase={this.handleStockPurchase}
+            user={this.props.user}
           />
-          
         ) : null}
-        
-        <Transactions user={this.props.user}/>
+
+        <Transactions user={this.state.user} trades={this.state.trades}  />
+        <Portfolio user={this.props.user} trades={this.state.trades} string={uniqueStockString} />
       </div>
     );
   }
