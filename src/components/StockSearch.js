@@ -49,13 +49,15 @@ class StockSearch extends Component {
 
   render() {
     return (
-      <div>
+      <div className={"Stock-Search-Container"}>
         <input
-          placeholder="Ticker"
+        className={"SearchInput"}
+          placeholder="Search Ticker"
           type="text"
           name="ticker"
-          value={this.state.ticker}
+          value={this.state.ticker.toUpperCase()}
           onChange={this.handleChange}
+          autofocus
         />
 
         {this.state.isSearching ? (

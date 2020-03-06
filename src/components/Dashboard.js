@@ -17,7 +17,7 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    this.setState({isLoading: true})
+    this.setState({ isLoading: true });
     axios
       .get(`http://localhost:3001/users/${this.props.user.id}`)
       .then(response =>
@@ -35,24 +35,42 @@ class Dashboard extends Component {
   };
 
   handleStockPurchase = async user => {
-    this.setState({ user: user.data, trades:user.data.trades, viewStock: false });
+    this.setState({
+      user: user.data,
+      trades: user.data.trades,
+      viewStock: false
+    });
     console.log(user);
   };
 
   render() {
+    return (
+      <div className={"Dashboard"}>
+        <Navbar
+          user={this.state.user}
+          handleLogout={this.props.handleLogout}
+          balance={this.state.user.balance}
+        />
 
-
-    
+       
+<div className="Stock-Info-Container">
   
 
 
-    return (
-     
-      <div className={"Dashboard"}>
-        
-      <Navbar user={this.state.user} handleLogout={this.props.handleLogout} balance={this.state.user.balance} />
+  {!this.state.isLoading ? (
+          <div >
+           
+            <Portfolio
+              user={this.state.user}
+              trades={this.state.trades}
+              stockArr={this.state.stockArr}
+            />{" "}
+          </div>
+        ) : (
+          <h1> Loading</h1>
+        )}
 
-        <h1>Dashboard</h1>
+        <div className="StockSearch">
 
         <StockSearch handleSearch={this.handleSearch} />
 
@@ -64,10 +82,20 @@ class Dashboard extends Component {
           />
         ) : null}
 
-        {!this.state.isLoading ? 
-        <div>
-        <Transactions user={this.state.user} trades={this.state.trades}  />
-        <Portfolio user={this.state.user} trades={this.state.trades} stockArr={this.state.stockArr} />  </div>: <h1> Loading</h1>}
+</div>
+        
+
+        
+
+        {!this.state.isLoading ? (
+          <div >
+            <Transactions user={this.state.user} trades={this.state.trades} />
+
+          </div>
+        ) : (
+          <h1> Loading</h1>
+        )}
+      </div>
       </div>
     );
   }

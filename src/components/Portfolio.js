@@ -92,7 +92,7 @@ render() {
     return (
        
         
-        <div className="Transactions-Container">
+        <div className="Portfolio-Container">
         {this.state.stockArr ? 
         this.state.stockArr.map(trade => 
           <div key={trade.stock} className="Transaction">

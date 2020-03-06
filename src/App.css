@@ -27,6 +27,7 @@
 }
 
 .Navbar {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -41,6 +42,8 @@
 }
 
 .Dashboard {
+  font-family: 'Montserrat', sans-serif;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -62,16 +65,76 @@ h4{
 }
 
 .Transaction {
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   /* margin: 10px 0px 10px 0px */
 }
 
-.Transactions-Container {
+.Stock-Info-Container{
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-between;
+}
+
+.StockSearch {
   display: flex;
   flex-direction: column;
+  margin: 20px;
+  flex:1;
 
+
+
+}
+
+.Stock-Search-Container {
+  /* border: 3px rgb(41, 41, 41) solid; */
+  border-radius: 15px;
+  height: fit-content;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)
+  
+}
+
+.SearchInput{
+  width: 400px;
+  height: 50px;
+  text-align: left;
+  font-size: 30px;
+  font-weight: bold;
+  border: none;
+  margin: 5px
+
+}
+
+input:focus{
+  outline: none
+}
+
+.SearchBar {
+  align-items: center;
+}
+
+.Transactions-Container {
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  align-items: left;
+  margin: 30px;
+  overflow: auto;
+  height: 600px;
+
+}
+
+.Portfolio-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  margin: 30px;
+  overflow: auto;
+  height: 600px;
+  flex:1;
 }
 
 .StockView:hover {
