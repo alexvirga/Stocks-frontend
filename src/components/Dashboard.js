@@ -4,6 +4,7 @@ import ShowStock from "./ShowStock";
 import axios from "axios";
 import Transactions from "./Transactions";
 import Portfolio from "./Portfolio";
+import Navbar from "./Navbar";
 
 class Dashboard extends Component {
   state = {
@@ -52,6 +53,8 @@ class Dashboard extends Component {
 
     return (
       <div className={"Dashboard"}>
+      <Navbar user={this.state.user} handleLogout={this.props.handleLogout} balance={this.state.user.balance} />
+
         <h1>Dashboard</h1>
 
         <StockSearch handleSearch={this.handleSearch} />

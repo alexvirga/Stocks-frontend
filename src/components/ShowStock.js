@@ -23,14 +23,18 @@ class ShowStock extends Component {
       this.postStocktoLedger(price,user,qty,symbol)
       let orderCost = price * qty;
       let newBalance = this.props.user.balance - orderCost;
-      const response = await axios.put(`http://localhost:3001/users/${user.id}`, {
+      await axios.put(`http://localhost:3001/users/${user.id}`, {
         balance: newBalance
-      });
+      })
+      .then( response =>
+        this.props.handlePurchase(response))
+
+      // this.props.handlePurchase({ response }))
+      .catch(error => console.log('api errors:', error))
   
       // .then(resp => console.log(resp.data))
       // .catch(error => console.log('api errors:', error))
-      console.log("feef", response)
-      this.props.handlePurchase({ response });
+
      
     };
 

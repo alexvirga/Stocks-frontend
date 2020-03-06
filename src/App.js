@@ -55,16 +55,16 @@ class App extends Component {
       <div>
 
           <BrowserRouter>
-            {this.state.isLoggedIn ? (
+            {/* {this.state.isLoggedIn ? (
               <Navbar user={this.state.user} handleLogout={this.handleLogout} />
-            ) : null}
+            ) : null} */}
 
             <Route
               exact
               path="/"
               component={() =>
                 this.state.isLoggedIn ? (
-                  <Dashboard user={this.state.user} />
+                  <Dashboard user={this.state.user} handleLogout={this.handleLogout} />
                 ) : (
                   <Home
                     handleLogout={this.handleLogout}
