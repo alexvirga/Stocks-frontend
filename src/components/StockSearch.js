@@ -57,7 +57,7 @@ class StockSearch extends Component {
           name="ticker"
           value={this.state.ticker.toUpperCase()}
           onChange={this.handleChange}
-          autofocus
+          autoFocus
         />
 
         {this.state.isSearching ? (

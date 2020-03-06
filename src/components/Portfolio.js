@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import PortfolioStockCard from "./PortfolioStockCard"
+
 
 class Portfolio extends Component {
   state = {
@@ -19,34 +19,28 @@ componentDidMount(){
     this.fetchPrices(this.props.stockArr)
 }
 
+componentDidUpdate(prevProps) {
+    if(prevProps.stockArr !== this.props.stockArr){
+        this.handlestocks(this.props.trades)
+        // this.fetchPrices(this.props.stockArr)
+    }
+}
 
-  
 
 
-//   findme()
 
- 
 
-  fetchPrices = (input) => {
- 
-
+  fetchPrices = (stockArr) => {
         this.setState({isLoading: true})
-      
-        let uniqueStockArray = [...new Set(input)]
+        let uniqueStockArray = [...new Set(stockArr)]
         let uniqueStockString = uniqueStockArray.toString()
-        console.log(uniqueStockString)
+        // console.log(uniqueStockString)
         // setInterval(() => {
         axios
         .get(`https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=Tsk_b220f21891584710a33a3e2ca16f2c8e`)
         .then(response => this.setState({liveData: response.data, isLoading: false}),
-        error => {console.log(error)}
+        // error => {console.log(error)}
         )
-
-
-
-
-
-
 
     //   },100000)
 
@@ -56,7 +50,8 @@ componentDidMount(){
   }
 
   handlestocks = (stocks) => {
-    //   console.log(stocks)
+    
+      console.log("stocksssss", stocks)
     let stockMap = {};
     let stockArr = [];
     for (let i = 0; i < stocks.length; i++) {
@@ -78,15 +73,14 @@ componentDidMount(){
       }
     }
     this.setState({ stockArr: stockArr });
-    console.log(stockArr);
+    // console.log(stockArr);
   }
 
 render() {
-    //   console.log(this.state.me)
 
+  
+    
 
-
-// let price = this.state.isLoading ? null : this.state.isLoading
 
     
     return (
@@ -108,6 +102,7 @@ render() {
           </div>)
            : null
         }
+        <h1> {this.props.user.balance} </h1>
       </div>
     
         

@@ -13,7 +13,8 @@ class Dashboard extends Component {
     user: {},
     trades: [],
     stockArr: [],
-    isLoading: false
+    
+    isLoading: true
   };
 
   componentDidMount() {
@@ -27,7 +28,10 @@ class Dashboard extends Component {
           stockArr: response.data.trades.map(stock => stock.stock),
           isLoading: false
         })
+        
+
       );
+
   }
 
   handleSearch = data => {
@@ -38,6 +42,7 @@ class Dashboard extends Component {
     this.setState({
       user: user.data,
       trades: user.data.trades,
+      stockArr: user.data.trades.map(stock => stock.stock),
       viewStock: false
     });
     console.log(user);
@@ -52,50 +57,39 @@ class Dashboard extends Component {
           balance={this.state.user.balance}
         />
 
-       
-<div className="Stock-Info-Container">
-  
+        <div className="Stock-Info-Container">
+          {!this.state.isLoading ? (
+            <div>
+              <Portfolio
+                user={this.state.user}
+                trades={this.state.trades}
+                stockArr={this.state.stockArr}
+              />{" "}
+            </div>
+          ) : (
+            <h1> Loading</h1>
+          )}
 
+          <div className="StockSearch">
+            <StockSearch handleSearch={this.handleSearch} />
 
-  {!this.state.isLoading ? (
-          <div >
-           
-            <Portfolio
-              user={this.state.user}
-              trades={this.state.trades}
-              stockArr={this.state.stockArr}
-            />{" "}
+            {this.state.viewStock ? (
+              <ShowStock
+                stock={this.state.selectedStock}
+                handlePurchase={this.handleStockPurchase}
+                user={this.state.user}
+              />
+            ) : null}
           </div>
-        ) : (
-          <h1> Loading</h1>
-        )}
 
-        <div className="StockSearch">
-
-        <StockSearch handleSearch={this.handleSearch} />
-
-        {this.state.viewStock ? (
-          <ShowStock
-            stock={this.state.selectedStock}
-            handlePurchase={this.handleStockPurchase}
-            user={this.props.user}
-          />
-        ) : null}
-
-</div>
-        
-
-        
-
-        {!this.state.isLoading ? (
-          <div >
-            <Transactions user={this.state.user} trades={this.state.trades} />
-
-          </div>
-        ) : (
-          <h1> Loading</h1>
-        )}
-      </div>
+          {!this.state.isLoading ? (
+            <div>
+              <Transactions user={this.state.user} trades={this.state.trades} />
+            </div>
+          ) : (
+            <h1> Loading</h1>
+          )}
+        </div>
       </div>
     );
   }
