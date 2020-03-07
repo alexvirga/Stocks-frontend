@@ -59,13 +59,13 @@ class Dashboard extends Component {
 
         <div className="Stock-Info-Container">
           {!this.state.isLoading ? (
-            <div>
+            
               <Portfolio
                 user={this.state.user}
                 trades={this.state.trades}
                 stockArr={this.state.stockArr}
-              />{" "}
-            </div>
+              />
+            
           ) : (
             <h1> Loading</h1>
           )}
@@ -83,9 +83,9 @@ class Dashboard extends Component {
           </div>
 
           {!this.state.isLoading ? (
-            <div>
+            
               <Transactions user={this.state.user} trades={this.state.trades} />
-            </div>
+            
           ) : (
             <h1> Loading</h1>
           )}

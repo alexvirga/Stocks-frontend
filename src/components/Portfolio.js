@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PortfolioStockCard from "./PortfolioStockCard";
 
 
 class Portfolio extends Component {
@@ -87,22 +88,25 @@ render() {
        
         
         <div className="Portfolio-Container">
-        {this.state.stockArr ? 
+           
+        {this.state.stockArr && !this.state.isLoading ? 
         this.state.stockArr.map(trade => 
-          <div key={trade.stock} className="Transaction">
-            <h4> {trade.stock} - </h4>
+            <PortfolioStockCard trade={trade} liveData={this.state.liveData} />
+        //   <div key={trade.stock} className="Transaction">
+        //     <h4> {trade.stock} - </h4>
 
-            <h4 style={{ fontWeight: "normal" }}>
-              {" "}
-              {trade.quantity} Share(s) Cost: ${trade.value}
-            </h4>
-            {!this.state.isLoading ? <p> Current Price: {this.state.liveData[trade.stock]['quote'].latestPrice} </p>: null }
+        //     <h4 style={{ fontWeight: "normal" }}>
+        //       {" "}
+        //       {trade.quantity} Share(s) Cost: ${trade.value}
+        //     </h4>
+        //     <h4> Current Price: {this.state.liveData[trade.stock]['quote'].latestPrice} </h4> 
             
 
-          </div>)
+        //   </div>
+        )
            : null
         }
-        <h1> {this.props.user.balance} </h1>
+       
       </div>
     
         

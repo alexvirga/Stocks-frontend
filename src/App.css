@@ -82,7 +82,7 @@ h4{
 .StockSearch {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 30px;
   flex:1;
 
 
@@ -124,6 +124,8 @@ input:focus{
   margin: 30px;
   overflow: auto;
   height: 600px;
+  min-width: 200px;
+
 
 }
 
@@ -135,6 +137,7 @@ input:focus{
   overflow: auto;
   height: 600px;
   flex:1;
+  min-width: 200px;
 }
 
 .StockView:hover {
