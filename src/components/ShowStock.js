@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 class ShowStock extends Component {
-    state = {shareQty: 0}
+    state = {
+      shareQty: 0}
 
 
 
@@ -68,12 +69,13 @@ class ShowStock extends Component {
     return (
     
       <div className={"StockView"}>
+        {/* <div className={"Close-Button"} onClick={this.props.closeStock}>x</div> */}
         <h3> {this.props.stock.symbol} </h3>
         <h2> {this.props.stock.latestPrice} </h2>
         <p className={this.performance()}> {dollarChange} {percentChange} </p>
         <div style={{display:"flex", flexDirection:"row"}}>
         <h3> Shares </h3>
-        <input type="text"  style={{alignSelf: "center"}} onChange={this.handleQtyChange}></input>
+        <input type="number"  style={{alignSelf: "center"}} onChange={this.handleQtyChange}></input>
         </div>
         
         <button onClick={() => this.handlePurchase(this.props.stock.latestPrice, this.props.user, this.state.shareQty, this.props.stock.symbol)}> Buy something </button>

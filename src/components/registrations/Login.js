@@ -41,7 +41,7 @@ let user = {
     .catch(error => console.log('api errors:', error))
   };
 redirect = () => {
-    this.props.history.push('/dashboard')
+    this.props.history.push('/')
   }
 
 handleErrors = () => {

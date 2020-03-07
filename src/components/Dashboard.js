@@ -13,7 +13,6 @@ class Dashboard extends Component {
     user: {},
     trades: [],
     stockArr: [],
-    
     isLoading: true
   };
 
@@ -37,6 +36,9 @@ class Dashboard extends Component {
   handleSearch = data => {
     this.setState({ viewStock: true, selectedStock: data });
   };
+
+
+
 
   handleStockPurchase = async user => {
     this.setState({
@@ -78,6 +80,7 @@ class Dashboard extends Component {
                 stock={this.state.selectedStock}
                 handlePurchase={this.handleStockPurchase}
                 user={this.state.user}
+               
               />
             ) : null}
           </div>

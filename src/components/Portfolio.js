@@ -23,7 +23,8 @@ componentDidMount(){
 componentDidUpdate(prevProps) {
     if(prevProps.stockArr !== this.props.stockArr){
         this.handlestocks(this.props.trades)
-        // this.fetchPrices(this.props.stockArr)
+        this.fetchPrices(this.props.stockArr)
+        
     }
 }
 
@@ -38,7 +39,7 @@ componentDidUpdate(prevProps) {
         // console.log(uniqueStockString)
         // setInterval(() => {
         axios
-        .get(`https://sandbox.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=Tsk_b220f21891584710a33a3e2ca16f2c8e`)
+        .get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=${process.env.REACT_APP_API_KEY}`)
         .then(response => this.setState({liveData: response.data, isLoading: false}),
         // error => {console.log(error)}
         )
@@ -52,7 +53,7 @@ componentDidUpdate(prevProps) {
 
   handlestocks = (stocks) => {
     
-      console.log("stocksssss", stocks)
+    
     let stockMap = {};
     let stockArr = [];
     for (let i = 0; i < stocks.length; i++) {
@@ -74,7 +75,7 @@ componentDidUpdate(prevProps) {
       }
     }
     this.setState({ stockArr: stockArr });
-    // console.log(stockArr);
+
   }
 
 render() {
@@ -88,21 +89,11 @@ render() {
        
         
         <div className="Portfolio-Container">
+          {console.log(this.state.liveData)}
            
-        {this.state.stockArr && !this.state.isLoading ? 
+        {this.state.stockArr.length > 1 && !this.state.isLoading ? 
         this.state.stockArr.map(trade => 
-            <PortfolioStockCard trade={trade} liveData={this.state.liveData} />
-        //   <div key={trade.stock} className="Transaction">
-        //     <h4> {trade.stock} - </h4>
-
-        //     <h4 style={{ fontWeight: "normal" }}>
-        //       {" "}
-        //       {trade.quantity} Share(s) Cost: ${trade.value}
-        //     </h4>
-        //     <h4> Current Price: {this.state.liveData[trade.stock]['quote'].latestPrice} </h4> 
-            
-
-        //   </div>
+            <PortfolioStockCard key={trade.stock} trade={trade} liveData={this.state.liveData[trade.stock]['quote']} />
         )
            : null
         }

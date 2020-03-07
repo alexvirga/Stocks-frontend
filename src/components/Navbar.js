@@ -19,7 +19,7 @@ class Navbar extends Component{
 
   update() {
     axios.put(`http://localhost:3001/users/${this.props.user.id}`, {balance: 4000})
-    .then(res => console.log(res.data))
+    // .then(res => console.log(res.data))
     .catch(error => console.log('api errors:', error))
 
 }
@@ -27,7 +27,7 @@ class Navbar extends Component{
 
 
   render() {
-      console.log(this.props.user)
+      // console.log(this.props.user)
   return (
     <div className="Navbar">
    <h1> {this.props.user.username}</h1>

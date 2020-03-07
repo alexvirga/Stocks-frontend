@@ -55,13 +55,31 @@ h4{
 }
 
 .StockView {
-  margin: 20px;
+  margin-top: 15px;
   padding: 20px;
   display: flex;
   align-items: left;
   flex-direction: column;
   background-color: white;
   transition-duration: .3s
+}
+
+.StockView:hover {
+  background-color: rgb(196, 196, 196);
+  transform: scale(1.02);
+  transition-duration: .3s
+}
+
+.Close-Button {
+   
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    padding: 12px 16px;
+    transform: translate(5%, -50%);
+
+    flex-basis: 10px;
+
 }
 
 .Transaction {
@@ -72,6 +90,29 @@ h4{
   /* margin: 10px 0px 10px 0px */
 }
 
+.Portfolo-Stock-Card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+}
+
+.Portfolio-Stock-Equal{
+  display: flex;
+  background-color: rgb(183, 176, 176);
+
+}
+
+.Portfolio-Stock-Up{
+  display: flex;
+  background-color: aquamarine;
+}
+
+.Portfolio-Stock-Down{
+  display: flex;
+  background-color: rgb(255, 127, 127);
+
+}
 .Stock-Info-Container{
   display: flex;
   flex-direction: row;
@@ -140,11 +181,7 @@ input:focus{
   min-width: 200px;
 }
 
-.StockView:hover {
-  background-color: rgb(196, 196, 196);
-  transform: scale(1.02);
-  transition-duration: .3s
-}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
 
-import { UserContext } from "./userContext";
+
 
 // console.log(process.env.REACT_APP_API_KEY)
 
@@ -93,12 +93,6 @@ class App extends Component {
                   loggedInStatus={this.state.isLoggedIn}
                 />
               )}
-            />
-
-            <Route
-              exact
-              path="/dashboard"
-              render={props => <Dashboard user={this.state.user} />}
             />
           </BrowserRouter>
  
