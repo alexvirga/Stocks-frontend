@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  height: 100vh;
 }
 
 .Homepage {
@@ -25,6 +26,15 @@
 .Stock-Up {
   color: rgb(0, 255, 0)
 }
+hr {
+  display: block;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1px
+
+}
 
 .Navbar {
   font-family: 'Montserrat', sans-serif;
@@ -32,7 +42,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
-  width: 100vw
+  width: 100vw;
+  
   
 }
 
@@ -47,7 +58,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto
+  height: auto;
+
 }
 
 h4{
@@ -70,16 +82,19 @@ h4{
   transition-duration: .3s
 }
 
-.Close-Button {
-   
-    display: flex;
-    justify-content: flex-end;
-    cursor: pointer;
-    padding: 12px 16px;
-    transform: translate(5%, -50%);
+/* ------- Transactions -----------*/
 
-    flex-basis: 10px;
 
+.Transactions-Container {
+  display: flex;
+  flex:1;
+  flex-direction: column;
+  align-items: left;
+  margin: 30px;
+  overflow: auto;
+  max-height: 600px;
+  min-width: 200px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)
 }
 
 .Transaction {
@@ -90,29 +105,66 @@ h4{
   /* margin: 10px 0px 10px 0px */
 }
 
+/* ------- Portfolio -----------*/
+
+.Portfolio-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  margin: 30px;
+  overflow: auto;
+  height: fit-content;
+  max-height: 600px;
+  flex:1;
+  min-width: 200px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
+  padding: 10px
+
+}
+
 .Portfolo-Stock-Card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
   justify-content: space-between;
-
+  flex-direction: row;
+  padding: 10px 10px
 }
 
-.Portfolio-Stock-Equal{
-  display: flex;
-  background-color: rgb(183, 176, 176);
 
-}
+
+
 
 .Portfolio-Stock-Up{
-  display: flex;
+
+  border-radius: 10px;
   background-color: aquamarine;
+  width: 100px;
+  text-align: center;
+ 
+
 }
 
 .Portfolio-Stock-Down{
-  display: flex;
-  background-color: rgb(255, 127, 127);
 
+  border-radius: 10px;
+  background-color: rgb(255, 127, 127);
+  width: 100px;
+  text-align: center;
 }
+
+.Portfolio-Stock-Equal{
+
+  border-radius: 10px;
+  background-color: rgb(183, 176, 176);
+  width: 100px;
+  text-align: center;
+  
+}
+
+
+
 .Stock-Info-Container{
   display: flex;
   flex-direction: row;
@@ -157,29 +209,9 @@ input:focus{
   align-items: center;
 }
 
-.Transactions-Container {
-  display: flex;
-  flex:1;
-  flex-direction: column;
-  align-items: left;
-  margin: 30px;
-  overflow: auto;
-  height: 600px;
-  min-width: 200px;
 
 
-}
 
-.Portfolio-Container {
-  display: flex;
-  flex-direction: column;
-  align-items: right;
-  margin: 30px;
-  overflow: auto;
-  height: 600px;
-  flex:1;
-  min-width: 200px;
-}
 
 
 

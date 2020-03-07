@@ -27,18 +27,12 @@ class Dashboard extends Component {
           stockArr: response.data.trades.map(stock => stock.stock),
           isLoading: false
         })
-        
-
       );
-
   }
 
   handleSearch = data => {
     this.setState({ viewStock: true, selectedStock: data });
   };
-
-
-
 
   handleStockPurchase = async user => {
     this.setState({
@@ -61,13 +55,11 @@ class Dashboard extends Component {
 
         <div className="Stock-Info-Container">
           {!this.state.isLoading ? (
-            
-              <Portfolio
-                user={this.state.user}
-                trades={this.state.trades}
-                stockArr={this.state.stockArr}
-              />
-            
+            <Portfolio
+              user={this.state.user}
+              trades={this.state.trades}
+              stockArr={this.state.stockArr}
+            />
           ) : (
             <h1> Loading</h1>
           )}
@@ -80,15 +72,12 @@ class Dashboard extends Component {
                 stock={this.state.selectedStock}
                 handlePurchase={this.handleStockPurchase}
                 user={this.state.user}
-               
               />
             ) : null}
           </div>
 
           {!this.state.isLoading ? (
-            
-              <Transactions user={this.state.user} trades={this.state.trades} />
-            
+            <Transactions user={this.state.user} trades={this.state.trades} />
           ) : (
             <h1> Loading</h1>
           )}

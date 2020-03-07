@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import PortfolioStockCard from "./PortfolioStockCard";
 
-
 class Portfolio extends Component {
   state = {
     user: {},
@@ -13,47 +12,37 @@ class Portfolio extends Component {
     isLoading: false
   };
 
-
-      
-componentDidMount(){
-    this.handlestocks(this.props.trades)
-    this.fetchPrices(this.props.stockArr)
-}
-
-componentDidUpdate(prevProps) {
-    if(prevProps.stockArr !== this.props.stockArr){
-        this.handlestocks(this.props.trades)
-        this.fetchPrices(this.props.stockArr)
-        
-    }
-}
-
-
-
-
-
-  fetchPrices = (stockArr) => {
-        this.setState({isLoading: true})
-        let uniqueStockArray = [...new Set(stockArr)]
-        let uniqueStockString = uniqueStockArray.toString()
-        // console.log(uniqueStockString)
-        // setInterval(() => {
-        axios
-        .get(`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=${process.env.REACT_APP_API_KEY}`)
-        .then(response => this.setState({liveData: response.data, isLoading: false}),
-        // error => {console.log(error)}
-        )
-
-    //   },100000)
-
-   
-
-
+  componentDidMount() {
+    this.handlestocks(this.props.trades);
+    this.fetchPrices(this.props.stockArr);
   }
 
-  handlestocks = (stocks) => {
-    
-    
+  componentDidUpdate(prevProps) {
+    if (prevProps.stockArr !== this.props.stockArr) {
+      this.handlestocks(this.props.trades);
+      this.fetchPrices(this.props.stockArr);
+    }
+  }
+
+  fetchPrices = stockArr => {
+    this.setState({ isLoading: true });
+    let uniqueStockArray = [...new Set(stockArr)];
+    let uniqueStockString = uniqueStockArray.toString();
+    // console.log(uniqueStockString)
+    // setInterval(() => {
+    axios
+      .get(
+        `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=${process.env.REACT_APP_API_KEY}`
+      )
+      .then(
+        response => this.setState({ liveData: response.data, isLoading: false })
+        // error => {console.log(error)}
+      );
+
+    //   },100000)
+  };
+
+  handlestocks = stocks => {
     let stockMap = {};
     let stockArr = [];
     for (let i = 0; i < stocks.length; i++) {
@@ -75,41 +64,29 @@ componentDidUpdate(prevProps) {
       }
     }
     this.setState({ stockArr: stockArr });
+  };
 
-  }
-
-render() {
-
-  
-    
-
-
-    
+  render() {
     return (
-       
-        
-        <div className="Portfolio-Container">
-          {console.log(this.state.liveData)}
-           
-        {this.state.stockArr.length > 1 && !this.state.isLoading ? 
-        this.state.stockArr.map(trade => 
-            <PortfolioStockCard key={trade.stock} trade={trade} liveData={this.state.liveData[trade.stock]['quote']} />
-        )
-           : null
-        }
-       
+      <div className="Portfolio-Container">
+        {this.state.stockArr.length > 1 && !this.state.isLoading
+          ? this.state.stockArr.map(trade => (
+              <PortfolioStockCard
+                key={trade.stock}
+                trade={trade}
+                liveData={this.state.liveData[trade.stock]["quote"]}
+              />
+            ))
+          : null}
+          
+          
       </div>
-    
-        
-      
-    //   <div className="Transactions-Container">
-    //       {this.props.user.trades ? this.props.user.trades.map(trade => console.log(trade.stock)) : null}
-          
-          
-         
 
-    //   </div>
-    )
+      //   <div className="Transactions-Container">
+      //       {this.props.user.trades ? this.props.user.trades.map(trade => console.log(trade.stock)) : null}
+
+      //   </div>
+    );
   }
 }
 

@@ -13,17 +13,29 @@ class PortfolioStockCard extends Component {
 
   render() {
     return (
-      <div className="Portfolo-Stock-Card">
-        <div key={this.props.trade.stock} className={this.performance()}>
-          <h4> {this.props.trade.stock} - </h4>
+      
+<div>
+        <div key={this.props.trade.stock} className={"Portfolo-Stock-Card"}>
+          <span style={{display:"flex", flexDirection:"column", textAlign: "left"}}>
+          <h4> {this.props.trade.stock} </h4>
+
 
           <h4 style={{ fontWeight: "normal" }}>
-            {" "}
-            {this.props.trade.quantity} Share(s) Cost: ${this.props.trade.value}
+            {this.props.trade.quantity} Share(s)
           </h4>
-          <h4> Current Price: {this.props.liveData.latestPrice} </h4>
+          </span>
+
+          <span style={{display:"flex", flexDirection:"column", textAlign: "right"}}>
+          <span className={this.performance()}><h4> ${this.props.liveData.latestPrice} </h4> </span>
+          <h4 style={{ fontWeight: "normal" }}> {(this.props.liveData.changePercent * 100).toFixed(2)}%</h4>
+
+          </span>
+         
+          
         </div>
-      </div>
+         <hr/>
+         </div>
+      
     );
   }
 }
