@@ -3,7 +3,9 @@ import axios from "axios";
 
 class ShowStock extends Component {
   state = {
-    shareQty: 0
+    shareQty: 0,
+    errors: [],
+    error: ""
   };
 
   performance = () => {
@@ -28,23 +30,34 @@ class ShowStock extends Component {
   };
 
   handlePurchase = async (price, user, qty, symbol) => {
-    this.postStocktoLedger(price, user, qty, symbol);
     let orderCost = price * qty;
     let newBalance = this.props.user.balance - orderCost;
+ 
     await axios
       .put(`http://localhost:3001/users/${user.id}`, {
         balance: newBalance
       })
-      .then(response => this.props.handlePurchase(response))
+      .then(response => {
+        if(response){
+          this.props.handlePurchase(response)
+          console.log("created purchase resp", response)
+          
+        } else {
+          this.setState({errors: response.data.errors})
+        }
+        })
+        };
+  
 
-      // this.props.handlePurchase({ response }))
-      .catch(error => console.log("api errors:", error));
 
-    // .then(resp => console.log(resp.data))
-    // .catch(error => console.log('api errors:', error))
-  };
 
   postStocktoLedger = (price, user, qty, symbol) => {
+    let orderCost = price * qty;
+    let newBalance = this.props.user.balance - orderCost;
+    if (newBalance < 0) {
+      this.setState({error: "You don't have enough cash for this transaction"})
+    }
+    else {
     console.log(user);
     axios
       .post("http://localhost:3001/trades", {
@@ -55,12 +68,27 @@ class ShowStock extends Component {
       })
       .then(response => {
         if (response.data.status === "created") {
+          this.handlePurchase(price, user, qty, symbol)
           console.log("created", response.data);
         } else {
-          console.log(response);
+          this.setState({errors: response.data.errors});
+          console.log("created", response.data.errors);
         }
-      });
+      })}
   };
+
+  handleErrors = () => {
+    return (
+    
+      <div>
+        {/* <p>{this.state.error}</p> */}
+        
+        {this.state.errors.map((error) => {
+          return <p key={error}>{error}</p>
+        })} 
+      </div>
+    )
+  }
 
   render() {
     let percentChange = this.props.stock.changePercent
@@ -94,7 +122,7 @@ class ShowStock extends Component {
         className="button"
         style={{verticalAlign: "middle", backgroundColor:this.buttonColor()}}
           onClick={() =>
-            this.handlePurchase(
+            this.postStocktoLedger(
               this.props.stock.latestPrice,
               this.props.user,
               this.state.shareQty,
@@ -105,6 +133,14 @@ class ShowStock extends Component {
           
           <span>Buy </span>
         </button>
+        <div>
+          {
+            this.state.errors ? 
+            this.handleErrors()
+            : null
+          }
+        </div>
+
       </div>
     );
   }

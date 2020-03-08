@@ -40,7 +40,7 @@ class Dashboard extends Component {
       user: user.data,
       trades: user.data.trades,
       stockArr: user.data.trades.map(stock => stock.stock),
-      viewStock: true
+      viewStock: false
     });
     console.log(user);
   };
@@ -57,7 +57,7 @@ class Dashboard extends Component {
         <div className="Stock-Info-Container">
           <div className="Portfilio-Div">
             <h4> Portfolio</h4>
-            <div class="btn-group">
+            <div className="btn-group">
               <button
                 onClick={() => this.setState({ portfolioToggle: false })}
                 className="toggle-button"

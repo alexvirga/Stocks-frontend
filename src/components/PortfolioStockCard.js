@@ -6,7 +6,7 @@ class PortfolioStockCard extends Component {
       return "Portfolio-Stock-Down";
     } else if (this.props.liveData.change > 0) {
       return "Portfolio-Stock-Up";
-    } else if ((this.props.liveData.change = 0)) {
+    } else if ((this.props.liveData.change === 0)) {
       return "Portfolio-Stock-Equal";
     }
   };
@@ -98,7 +98,7 @@ class PortfolioStockCard extends Component {
                   ).toFixed(2)}{" "}
                 </h4>
               </span>
-              <h4> ${this.props.trade.value} </h4>
+              <h4> ${this.props.trade.value.toFixed(2)} </h4>
               {/* <h4 style={{ fontWeight: "normal" }}>
                 {" "}
                 {(this.props.liveData.changePercent * 100).toFixed(2)}%

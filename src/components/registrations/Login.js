@@ -62,13 +62,13 @@ return (
       <div>
         <h1>Log In</h1>
         <form onSubmit={this.handleSubmit}>
-          <input
+          {/* <input
             placeholder="username"
             type="text"
             name="username"
             value={username}
             onChange={this.handleChange}
-          />
+          /> */}
           <input
             placeholder="email"
             type="text"

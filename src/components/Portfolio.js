@@ -70,7 +70,7 @@ class Portfolio extends Component {
     return (
       <div className="Portfolio-Container">
         
-        {this.state.stockArr.length > 1 && !this.state.isLoading
+        {this.state.stockArr.length > 0 && !this.state.isLoading
           ? this.state.stockArr.map(trade => (
               <PortfolioStockCard
                 portfolioToggle={this.props.portfolioToggle}

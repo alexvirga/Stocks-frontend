@@ -56,28 +56,28 @@ return (
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder="username"
+            placeholder="Name"
             type="text"
             name="username"
             value={username}
             onChange={this.handleChange}
           />
           <input
-            placeholder="email"
+            placeholder="Email"
             type="text"
             name="email"
             value={email}
             onChange={this.handleChange}
           />
           <input 
-            placeholder="password"
+            placeholder="Password"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
           <input
-            placeholder="password confirmation"
+            placeholder="Password Confirmation"
             type="password"
             name="password_confirmation"
             value={password_confirmation}
