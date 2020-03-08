@@ -11,7 +11,7 @@ class Transactions extends Component {
       <div className="Transactions-Container">
         {this.props.trades.map(trade => (
           <div key={trade.id} className="Transaction">
-            <h4> {trade.stock} - </h4>
+            <h4> {trade.stock} </h4>
 
             <h4 style={{ fontWeight: "normal" }}>
               {" "}

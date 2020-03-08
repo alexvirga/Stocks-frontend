@@ -13,7 +13,8 @@ class Dashboard extends Component {
     user: {},
     trades: [],
     stockArr: [],
-    isLoading: true
+    isLoading: true,
+    portfolioToggle: false
   };
 
   componentDidMount() {
@@ -39,7 +40,7 @@ class Dashboard extends Component {
       user: user.data,
       trades: user.data.trades,
       stockArr: user.data.trades.map(stock => stock.stock),
-      viewStock: false
+      viewStock: true
     });
     console.log(user);
   };
@@ -54,15 +55,35 @@ class Dashboard extends Component {
         />
 
         <div className="Stock-Info-Container">
-          {!this.state.isLoading ? (
-            <Portfolio
-              user={this.state.user}
-              trades={this.state.trades}
-              stockArr={this.state.stockArr}
-            />
-          ) : (
-            <h1> Loading</h1>
-          )}
+          <div className="Portfilio-Div">
+            <h4> Portfolio</h4>
+            <div class="btn-group">
+              <button
+                onClick={() => this.setState({ portfolioToggle: false })}
+                className="toggle-button"
+              >
+                Equity
+              </button>
+
+              <button
+                onClick={() => this.setState({ portfolioToggle: true })}
+                className="toggle-button"
+              >
+                Stock Price
+              </button>
+            </div>
+
+            {!this.state.isLoading ? (
+              <Portfolio
+                user={this.state.user}
+                trades={this.state.trades}
+                stockArr={this.state.stockArr}
+                portfolioToggle={this.state.portfolioToggle}
+              />
+            ) : (
+              <h1> Loading</h1>
+            )}
+          </div>
 
           <div className="StockSearch">
             <StockSearch handleSearch={this.handleSearch} />
@@ -76,11 +97,14 @@ class Dashboard extends Component {
             ) : null}
           </div>
 
-          {!this.state.isLoading ? (
-            <Transactions user={this.state.user} trades={this.state.trades} />
-          ) : (
-            <h1> Loading</h1>
-          )}
+          <div className="Transactions-Div">
+            <h4> Transactions</h4>
+            {!this.state.isLoading ? (
+              <Transactions user={this.state.user} trades={this.state.trades} />
+            ) : (
+              <h1> Loading</h1>
+            )}
+          </div>
         </div>
       </div>
     );

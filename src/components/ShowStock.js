@@ -12,6 +12,17 @@ class ShowStock extends Component {
     } else return "Stock-Up";
   };
 
+
+  buttonColor = () => {
+    if (this.props.stock.change < 0) {
+      return "rgb(255, 127, 127)";
+    } else if (this.props.stock.change > 0) {
+      return "#2fe7a5"
+    } else if ((this.props.stock.change = 0)) {
+      return "rgb(183, 176, 176)";
+    }
+  };
+
   handleQtyChange = e => {
     this.setState({ shareQty: e.target.value });
   };
@@ -63,21 +74,25 @@ class ShowStock extends Component {
       <div className={"StockView"}>
         {/* <div className={"Close-Button"} onClick={this.props.closeStock}>x</div> */}
         <h3> {this.props.stock.symbol} </h3>
-        <h2> {this.props.stock.latestPrice} </h2>
+        <p> {this.props.stock.companyName} </p>
+        <h2> ${this.props.stock.latestPrice} </h2>
         <p className={this.performance()}>
-          {" "}
-          {dollarChange} {percentChange}{" "}
+          {dollarChange}{"   "} {percentChange}
         </p>
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <h3> Shares </h3>
+        <div style={{ display: "flex", flexDirection: "row"}}>
+          <h3> Share Qty: </h3>
           <input
+          className="Qty-Input"
+         
             type="number"
-            style={{ alignSelf: "center" }}
+            style={{ alignSelf: "center",textDecoration:"none" }}
             onChange={this.handleQtyChange}
           ></input>
         </div>
 
         <button
+        className="button"
+        style={{verticalAlign: "middle", backgroundColor:this.buttonColor()}}
           onClick={() =>
             this.handlePurchase(
               this.props.stock.latestPrice,
@@ -87,8 +102,8 @@ class ShowStock extends Component {
             )
           }
         >
-          {" "}
-          Buy something{" "}
+          
+          <span>Buy </span>
         </button>
       </div>
     );

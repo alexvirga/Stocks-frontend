@@ -20,11 +20,13 @@
 }
 
 .Stock-Down {
-  color: rgb(255, 0, 0)
+  color: rgb(255, 37, 37);
+  font-weight: bold;
 }
 
 .Stock-Up {
-  color: rgb(0, 255, 0)
+  color: #2fe7a5;
+  font-weight: bold;
 }
 hr {
   display: block;
@@ -73,17 +75,34 @@ h4{
   align-items: left;
   flex-direction: column;
   background-color: white;
-  transition-duration: .3s
+  transition-duration: .3s;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
+border-radius: 10px;
+
 }
 
 .StockView:hover {
-  background-color: rgb(196, 196, 196);
+  background-color: rgb(227, 227, 227);
   transform: scale(1.02);
   transition-duration: .3s
 }
 
 /* ------- Transactions -----------*/
 
+.Transactions-Div {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  overflow: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 600px;
+  flex: 1 1;
+  min-width: 300px;
+  padding: 10px;
+
+  
+}
 
 .Transactions-Container {
   display: flex;
@@ -94,6 +113,7 @@ h4{
   overflow: auto;
   max-height: 600px;
   min-width: 200px;
+  padding: 10px;
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)
 }
 
@@ -102,6 +122,7 @@ h4{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0px 10px
   /* margin: 10px 0px 10px 0px */
 }
 
@@ -118,11 +139,28 @@ h4{
   flex:1;
   min-width: 200px;
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
-  padding: 10px
+  padding: 10px;
+  border-radius: 15px;
 
 }
 
+.Portfilio-Div {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  overflow: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 600px;
+  flex: 1 1;
+  min-width: 300px;
+  padding: 10px;
+
+  
+}
+
 .Portfolo-Stock-Card {
+ 
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -132,6 +170,19 @@ h4{
   padding: 10px 10px
 }
 
+.Portfolo-Stock-Card:hover {
+ 
+  background-color: rgb(227, 227, 227);
+
+  /* display: flex;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 10px;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px 10px */
+}
+
 
 
 
@@ -139,7 +190,7 @@ h4{
 .Portfolio-Stock-Up{
 
   border-radius: 10px;
-  background-color: aquamarine;
+  background-color: #2fe7a5;
   width: 100px;
   text-align: center;
  
@@ -201,14 +252,92 @@ h4{
 
 }
 
+.Qty-Input {
+  border: 1px lightgrey solid
+  /* border-bottom: 2px solid rgb(0, 0, 0); */
+}
+
 input:focus{
-  outline: none
+  outline: none;
+
 }
 
 .SearchBar {
   align-items: center;
 }
 
+/*------- Button --------*/
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-weight: bold;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* Toggle Button */
+
+.btn-group {
+
+}
+
+.toggle-button {
+  /* box-shadow: 0 0 px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09); */
+  background-color: #6a6a6a;
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 300;
+  border: 1px black solid;
+  border-radius: 1px;
+
+
+}
+
+.btn-group .toggle-button:hover {
+  background-color: #303030;
+}
+
+button:focus { outline: none;
+  background-color: black
+ }
 
 
 
