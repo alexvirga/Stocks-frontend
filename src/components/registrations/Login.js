@@ -59,33 +59,40 @@ handleErrors = () => {
 render() {
     const {username, email, password} = this.state
 return (
-      <div>
-        <h1>Log In</h1>
+      <div className="Login-Signup-Page">
+           <div className="Homepage-background"></div>
+           <div className="Registration-Container">
+        <h1>Welcome Back</h1>
+        <p> Log in to start trading</p>
+
         <form onSubmit={this.handleSubmit}>
-          {/* <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          /> */}
           <input
             placeholder="email"
-            type="text"
+            className="Registration-Input"
+            type="email"
             name="email"
             value={email}
             onChange={this.handleChange}
           />
           <input
+          className="Registration-Input"
             placeholder="password"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
-          <button placeholder="submit" type="submit">
-            Log In
-          </button>
+        <button placeholder="submit" type="submit" className="btn" style={{margin: "35px 0px 10px 0px"}}>
+            <div className="box-1">
+            <div className="btn btn-registration">
+                  <span>Login</span>
+                </div>
+              </div>
+              </button>
+
+         
+
+          
           <div>
             or <Link to='/signup'>sign up</Link>
           </div>
@@ -95,6 +102,7 @@ return (
           {
             this.state.errors ? this.handleErrors() : null
           }
+        </div>
         </div>
       </div>
     );

@@ -3,12 +3,13 @@
   height: 100vh;
 }
 
+/* Homepage */
+
 .Homepage {
   display: flex;
   flex-direction: row;
   height: 100vh
 }
-
 .Homepage-background {
   display: flex;
   flex: 2;
@@ -16,7 +17,6 @@
   background-size: cover;
   background-attachment: inherit;
   background-position: bottom;
-
 }
 
 .pipe-logo{
@@ -28,6 +28,46 @@
   font-weight: 300;
   font-size: 50px;
 }
+
+.Registration-Container {
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px
+  
+}
+
+/* Login */
+
+.Login-Signup-Page {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+ 
+}
+
+.Registration-Input {
+  width: 90%;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid #d3d3d3;
+  color: #111;
+  font-size: 25px;
+  margin: 15px;
+}
+
+.Registration-Input:focus {
+  width: 90%;
+  color: #3e3e3e;
+  transition: 0.2s all;
+  cursor: text;
+  border-color: #45359d;
+}
+
+
+
 
 .Stock-Down {
   color: rgb(255, 37, 37);
@@ -78,14 +118,7 @@ h4{
   margin: 10px 0px 10px 0px
 }
 
-.Registration-Container {
-  align-items: center;
-  justify-content: center;
-  display: inline-flex;
-  flex: 1;
-  flex-direction: column;
-  
-}
+
 
 .StockView {
   margin-top: 15px;
@@ -361,12 +394,7 @@ button:focus { outline: none;
 
  /* Registration button */
 
- .registration {
-	color: #FFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
- }
+
 
  div[class*=box] {
 	height: 100%;
@@ -387,6 +415,9 @@ button:focus { outline: none;
 	text-align: center;
 	width: 250px;
   cursor: pointer;
+  padding: 0px;
+  border-radius: 4px;
+  font-size: 20px;
  
 }
 
@@ -401,6 +432,11 @@ button:focus { outline: none;
 .btn-registration span {
 	transition: all 0.3s;
 }
+/* 
+.btn-registration  {
+  transition: all 0.3s;
+ 
+} */
 .btn-registration::before {
 	content: '';
 	position: absolute;

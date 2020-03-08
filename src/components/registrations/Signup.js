@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import axios from "axios";
+import {Link} from 'react-router-dom'
+
 class Signup extends Component {
 state = { 
       username: '',
@@ -52,41 +54,56 @@ handleErrors = () => {
 render() {
     const {username, email, password, password_confirmation} = this.state
 return (
-      <div>
+      <div className="Login-Signup-Page">
+      <div className="Homepage-background"></div>
+      <div className="Registration-Container">
         <h1>Sign Up</h1>
         <form onSubmit={this.handleSubmit}>
           <input
-            placeholder="Name"
+          className="Registration-Input"
+            placeholder="name"
             type="text"
             name="username"
             value={username}
             onChange={this.handleChange}
           />
           <input
-            placeholder="Email"
-            type="text"
+            placeholder="email"
+            className="Registration-Input"
+            type="email"
             name="email"
             value={email}
             onChange={this.handleChange}
           />
           <input 
-            placeholder="Password"
+            placeholder="password"
+            className="Registration-Input"
             type="password"
             name="password"
             value={password}
             onChange={this.handleChange}
           />
           <input
-            placeholder="Password Confirmation"
+            placeholder="password confirmation"
             type="password"
+            className="Registration-Input"
             name="password_confirmation"
             value={password_confirmation}
             onChange={this.handleChange}
           />
         
-          <button placeholder="submit" type="submit">
-            Sign Up
-          </button>
+        <button placeholder="submit" type="submit" className="btn" style={{margin: "35px 0px 10px 0px"}}>
+            <div className="box-1">
+            <div className="btn btn-registration">
+                  <span>Sign Up</span>
+                </div>
+              </div>
+              </button>
+
+              <div>
+            Already a user? <Link to='/login'> Log in </Link>
+          </div>
+
       
         </form>
         <div>
@@ -95,6 +112,8 @@ return (
           }
         </div>
       </div>
+      </div>
+    
     );
   }
 }
