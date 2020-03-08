@@ -19,6 +19,16 @@
 
 }
 
+.pipe-logo{
+  height: 100px
+}
+
+.Pipeline-title{
+  margin: 10px 0px 90px 0px;
+  font-weight: 300;
+  font-size: 50px;
+}
+
 .Stock-Down {
   color: rgb(255, 37, 37);
   font-weight: bold;
@@ -66,6 +76,15 @@ hr {
 
 h4{
   margin: 10px 0px 10px 0px
+}
+
+.Registration-Container {
+  align-items: center;
+  justify-content: center;
+  display: inline-flex;
+  flex: 1;
+  flex-direction: column;
+  
 }
 
 .StockView {
@@ -266,7 +285,9 @@ input:focus{
   align-items: center;
 }
 
-/*------- Button --------*/
+
+
+/*------- Buttons --------*/
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -311,7 +332,6 @@ input:focus{
 /* Toggle Button */
 
 .btn-group {
-
 }
 
 .toggle-button {
@@ -338,6 +358,91 @@ input:focus{
 button:focus { outline: none;
   background-color: black
  }
+
+ /* Registration button */
+
+ .registration {
+	color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+
+ div[class*=box] {
+	height: 100%;
+	width: 100%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.box-1 { background-color: #45359d; }
+.box-2 { background-color: #6b74cc; }
+
+
+.btn {
+	line-height: 50px;
+	height: 50px;
+	text-align: center;
+	width: 250px;
+  cursor: pointer;
+ 
+}
+
+
+/* Registration buttons */
+
+.btn-registration {
+	color: #FFF;
+	transition: all 0.3s;
+	position: relative;
+}
+.btn-registration span {
+	transition: all 0.3s;
+}
+.btn-registration::before {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	opacity: 0;
+	transition: all 0.3s;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: rgba(255,255,255,0.5);
+	border-bottom-color: rgba(255,255,255,0.5);
+	transform: scale(0.1, 1);
+}
+.btn-registration:hover span {
+	letter-spacing: 2px;
+}
+.btn-registration:hover::before {
+	opacity: 1;	
+	transform: scale(1, 1);	
+}
+.btn-registration::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	transition: all 0.3s;
+	background-color: rgba(255,255,255,0.1);
+}
+.btn-registration:hover::after {
+	opacity: 0;	
+	transform: scale(0.1, 1);
+}
+
+
 
 
 

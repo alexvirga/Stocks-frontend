@@ -1,27 +1,42 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-const Home = (props) => {
-  
+import React from "react";
+import { Link } from "react-router-dom";
+const Home = props => {
+  return (
+    <div className="Homepage">
+      <div className="Homepage-background"></div>
+      <div style={{ display: "flex", flex: "1", minWidth: "300px" }}>
+        {!props.loggedInStatus ? (
+          <div className="Registration-Container">
 
-return (
-  <div className="Homepage">
-    <div className="Homepage-background">
-    </div>
-    <div style={{display:"flex", flex:"1", minWidth:"300px"}}>
-    { 
-        !props.loggedInStatus ? 
-        <div> 
-        <Link to='/login'>Log In</Link>
-        <br></br>
-        <Link to='/signup'>Sign Up</Link>
-        <br></br>
-        </div>
+                          <img
+                src="pipe.png"
+                className="pipe-logo"
+                alt=""
+              />
+            <h1 className="Pipeline-title"> Pipeline Portfolios</h1>
 
-        : null
-      }
-      
 
-    </div>
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              <div className="box-1">
+                <div className="btn btn-registration">
+                  <span>Login</span>
+                </div>
+              </div>
+            </Link>
+
+            <br></br>
+            
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <div className="box-2">
+                <div className="btn btn-registration">
+                  <span> Sign Up</span>
+                </div>
+              </div>
+              </Link>
+            <br></br>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

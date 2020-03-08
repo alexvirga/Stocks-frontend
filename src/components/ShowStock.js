@@ -14,12 +14,11 @@ class ShowStock extends Component {
     } else return "Stock-Up";
   };
 
-
   buttonColor = () => {
     if (this.props.stock.change < 0) {
       return "rgb(255, 127, 127)";
     } else if (this.props.stock.change > 0) {
-      return "#2fe7a5"
+      return "#2fe7a5";
     } else if ((this.props.stock.change = 0)) {
       return "rgb(183, 176, 176)";
     }
@@ -32,63 +31,59 @@ class ShowStock extends Component {
   handlePurchase = async (price, user, qty, symbol) => {
     let orderCost = price * qty;
     let newBalance = this.props.user.balance - orderCost;
- 
+
     await axios
       .put(`http://localhost:3001/users/${user.id}`, {
         balance: newBalance
       })
       .then(response => {
-        if(response){
-          this.props.handlePurchase(response)
-          console.log("created purchase resp", response)
-          
+        if (response) {
+          this.props.handlePurchase(response);
+          console.log("created purchase resp", response);
         } else {
-          this.setState({errors: response.data.errors})
+          this.setState({ errors: response.data.errors });
         }
-        })
-        };
-  
-
-
+      });
+  };
 
   postStocktoLedger = (price, user, qty, symbol) => {
     let orderCost = price * qty;
     let newBalance = this.props.user.balance - orderCost;
     if (newBalance < 0) {
-      this.setState({error: "You don't have enough cash for this transaction"})
+      this.setState({
+        error: "You don't have enough cash for this transaction"
+      });
+    } else {
+      console.log(user);
+      axios
+        .post("http://localhost:3001/trades", {
+          stock: symbol,
+          user_id: user.id,
+          cost_per_share: price,
+          quantity: qty
+        })
+        .then(response => {
+          if (response.data.status === "created") {
+            this.handlePurchase(price, user, qty, symbol);
+            console.log("created", response.data);
+          } else {
+            this.setState({ errors: response.data.errors });
+            console.log("created", response.data.errors);
+          }
+        });
     }
-    else {
-    console.log(user);
-    axios
-      .post("http://localhost:3001/trades", {
-        stock: symbol,
-        user_id: user.id,
-        cost_per_share: price,
-        quantity: qty
-      })
-      .then(response => {
-        if (response.data.status === "created") {
-          this.handlePurchase(price, user, qty, symbol)
-          console.log("created", response.data);
-        } else {
-          this.setState({errors: response.data.errors});
-          console.log("created", response.data.errors);
-        }
-      })}
   };
 
   handleErrors = () => {
     return (
-    
       <div>
-        {/* <p>{this.state.error}</p> */}
-        
-        {this.state.errors.map((error) => {
-          return <p key={error}>{error}</p>
-        })} 
+
+        {this.state.errors.map(error => {
+          return <p key={error}>{error}</p>;
+        })}
       </div>
-    )
-  }
+    );
+  };
 
   render() {
     let percentChange = this.props.stock.changePercent
@@ -105,22 +100,25 @@ class ShowStock extends Component {
         <p> {this.props.stock.companyName} </p>
         <h2> ${this.props.stock.latestPrice} </h2>
         <p className={this.performance()}>
-          {dollarChange}{"   "} {percentChange}
+          {dollarChange}
+          {"   "} {percentChange}
         </p>
-        <div style={{ display: "flex", flexDirection: "row"}}>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           <h3> Share Qty: </h3>
           <input
-          className="Qty-Input"
-         
+            className="Qty-Input"
             type="number"
-            style={{ alignSelf: "center",textDecoration:"none" }}
+            style={{ alignSelf: "center", textDecoration: "none" }}
             onChange={this.handleQtyChange}
           ></input>
         </div>
 
         <button
-        className="button"
-        style={{verticalAlign: "middle", backgroundColor:this.buttonColor()}}
+          className="button"
+          style={{
+            verticalAlign: "middle",
+            backgroundColor: this.buttonColor()
+          }}
           onClick={() =>
             this.postStocktoLedger(
               this.props.stock.latestPrice,
@@ -130,17 +128,9 @@ class ShowStock extends Component {
             )
           }
         >
-          
           <span>Buy </span>
         </button>
-        <div>
-          {
-            this.state.errors ? 
-            this.handleErrors()
-            : null
-          }
-        </div>
-
+        <div>{this.state.errors ? this.handleErrors() : null}</div>
       </div>
     );
   }

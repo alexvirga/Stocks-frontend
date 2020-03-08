@@ -89,11 +89,12 @@ class Dashboard extends Component {
             <StockSearch handleSearch={this.handleSearch} />
 
             {this.state.viewStock ? (
+              this.state.selectedStock ? 
               <ShowStock
                 stock={this.state.selectedStock}
                 handlePurchase={this.handleStockPurchase}
                 user={this.state.user}
-              />
+              /> : <h1> Loading </h1>
             ) : null}
           </div>
 
