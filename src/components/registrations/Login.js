@@ -27,7 +27,7 @@ let user = {
       password: password
     }
     
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('https://fast-savannah-59172.herokuapp.com/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
@@ -47,12 +47,12 @@ redirect = () => {
 handleErrors = () => {
     return (
       <div>
-        <ul>
+        
         {this.state.errors.map(error => {
-        return <li key={error}>{error}</li>
+        return <p key={error}>{error}</p>
           })
         }
-        </ul>
+        
       </div>
     )
   }

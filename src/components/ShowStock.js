@@ -33,7 +33,7 @@ class ShowStock extends Component {
     let newBalance = this.props.user.balance - orderCost;
 
     await axios
-      .put(`http://localhost:3001/users/${user.id}`, {
+      .put(`https://fast-savannah-59172.herokuapp.com/users/${user.id}`, {
         balance: newBalance
       })
       .then(response => {
@@ -56,7 +56,7 @@ class ShowStock extends Component {
     } else {
       console.log(user);
       axios
-        .post("http://localhost:3001/trades", {
+        .post("https://fast-savannah-59172.herokuapp.com/trades", {
           stock: symbol,
           user_id: user.id,
           cost_per_share: price,
@@ -108,7 +108,8 @@ class ShowStock extends Component {
           <input
             className="Qty-Input"
             type="number"
-            style={{ alignSelf: "center", textDecoration: "none" }}
+            
+          
             onChange={this.handleQtyChange}
           ></input>
         </div>

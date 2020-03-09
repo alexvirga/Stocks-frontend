@@ -20,7 +20,7 @@ class Dashboard extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     axios
-      .get(`http://localhost:3001/users/${this.props.user.id}`)
+      .get(`https://fast-savannah-59172.herokuapp.com/users/${this.props.user.id}`)
       .then(response =>
         this.setState({
           user: response.data,

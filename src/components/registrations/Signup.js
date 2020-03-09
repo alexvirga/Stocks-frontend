@@ -26,7 +26,7 @@ handleSubmit = (event) => {
       password: password,
       password_confirmation: password_confirmation
     }
-axios.post('http://localhost:3001/users', {user}, {withCredentials: true})
+axios.post('https://fast-savannah-59172.herokuapp.com/users', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.status === 'created') {
         this.props.handleLogin(response.data)
@@ -45,9 +45,9 @@ redirect = () => {
 handleErrors = () => {
     return (
       <div>
-        <ul>{this.state.errors.map((error) => {
-          return <li key={error}>{error}</li>
-        })}</ul> 
+        {this.state.errors.map((error) => {
+          return <p key={error}>{error}</p>
+        })}
       </div>
     )
   }

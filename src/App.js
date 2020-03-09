@@ -8,9 +8,6 @@ import Signup from "./components/registrations/Signup";
 import "./App.css";
 
 
-
-// console.log(process.env.REACT_APP_API_KEY)
-
 class App extends Component {
   state = {
     isLoggedIn: false,
@@ -20,9 +17,10 @@ class App extends Component {
   componentDidMount() {
     this.loginStatus();
   }
+
   loginStatus = () => {
     axios
-      .get("http://localhost:3001/logged_in", { withCredentials: true })
+      .get("https://fast-savannah-59172.herokuapp.com/logged_in", { withCredentials: true })
       .then(response => {
         if (response.data.logged_in) {
           this.setState({
@@ -53,49 +51,49 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
-          <BrowserRouter>
-
-            <Route
-              exact
-              path="/"
-              component={() =>
-                this.state.isLoggedIn ? (
-                  <Dashboard user={this.state.user} handleLogout={this.handleLogout} />
-                ) : (
-                  <Home
-                    handleLogout={this.handleLogout}
-                    loggedInStatus={this.state.isLoggedIn}
-                  />
-                )
-              }
-            />
-
-            <Route
-              exact
-              path="/login"
-              render={props => (
-                <Login
-                  {...props}
-                  handleLogin={this.handleLogin}
+        <BrowserRouter>
+          <Route
+            exact
+            path="/"
+            component={() =>
+              this.state.isLoggedIn ? (
+                <Dashboard
+                  user={this.state.user}
+                  handleLogout={this.handleLogout}
+                />
+              ) : (
+                <Home
+                  handleLogout={this.handleLogout}
                   loggedInStatus={this.state.isLoggedIn}
                 />
-              )}
-            />
+              )
+            }
+          />
 
-            <Route
-              exact
-              path="/signup"
-              render={props => (
-                <Signup
-                  {...props}
-                  handleLogin={this.handleLogin}
-                  loggedInStatus={this.state.isLoggedIn}
-                />
-              )}
-            />
-          </BrowserRouter>
- 
+          <Route
+            exact
+            path="/login"
+            render={props => (
+              <Login
+                {...props}
+                handleLogin={this.handleLogin}
+                loggedInStatus={this.state.isLoggedIn}
+              />
+            )}
+          />
+
+          <Route
+            exact
+            path="/signup"
+            render={props => (
+              <Signup
+                {...props}
+                handleLogin={this.handleLogin}
+                loggedInStatus={this.state.isLoggedIn}
+              />
+            )}
+          />
+        </BrowserRouter>
       </div>
     );
   }

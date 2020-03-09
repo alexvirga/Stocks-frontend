@@ -3,12 +3,30 @@
   height: 100vh;
 }
 
-/* Homepage */
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+hr {
+  display: block;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 1px;
+}
+
+h4 {
+  margin: 10px 0px 10px 0px;
+}
+
+/*----- Homepage ------*/
 
 .Homepage {
   display: flex;
   flex-direction: row;
-  height: 100vh
+  height: 100vh;
 }
 .Homepage-background {
   display: flex;
@@ -19,15 +37,17 @@
   background-position: bottom;
 }
 
-.pipe-logo{
-  height: 100px
+.pipe-logo {
+  height: 100px;
 }
 
-.Pipeline-title{
+.Pipeline-title {
   margin: 10px 0px 90px 0px;
   font-weight: 300;
   font-size: 50px;
 }
+
+/*------ Registration-----*/
 
 .Registration-Container {
   align-items: center;
@@ -35,17 +55,15 @@
   display: inline-flex;
   flex: 1;
   flex-direction: column;
-  padding: 20px
-  
+  padding: 20px;
 }
 
-/* Login */
+/*------- Login --------*/
 
 .Login-Signup-Page {
   display: flex;
   flex-direction: row;
   height: 100vh;
- 
 }
 
 .Registration-Input {
@@ -66,77 +84,54 @@
   border-color: #45359d;
 }
 
-
-
-
-.Stock-Down {
-  color: rgb(255, 37, 37);
-  font-weight: bold;
+/*------ Dashboard ------*/
+.Dashboard {
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.Stock-Up {
-  color: #2fe7a5;
-  font-weight: bold;
+.Stock-Info-Container {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100%;
+  justify-content: space-between;
 }
-hr {
-  display: block;
-  border: 0;
-  height: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 1px
 
-}
+/*------ Navbar ------*/
 
 .Navbar {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  border-bottom: 1px lightgrey solid;
+}
+
+.Navbar-menu {
+  padding: 0px 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  width: 100vw;
-  
-  
+  justify-content: space-between;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.pipe-logo-navbar {
+  height: 60px;
+  margin: 10px;
 }
 
-.Dashboard {
-  font-family: 'Montserrat', sans-serif;
-
+.User-Info {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: auto;
-
-}
-
-h4{
-  margin: 10px 0px 10px 0px
-}
-
-
-
-.StockView {
-  margin-top: 15px;
-  padding: 20px;
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-  background-color: white;
-  transition-duration: .3s;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
-border-radius: 10px;
-
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .StockView:hover {
   background-color: rgb(227, 227, 227);
   transform: scale(1.02);
-  transition-duration: .3s
+  transition-duration: 0.3s;
 }
 
 /* ------- Transactions -----------*/
@@ -152,13 +147,11 @@ border-radius: 10px;
   flex: 1 1;
   min-width: 300px;
   padding: 10px;
-
-  
 }
 
 .Transactions-Container {
   display: flex;
-  flex:1;
+  flex: 1;
   flex-direction: column;
   align-items: left;
   margin: 30px;
@@ -166,15 +159,15 @@ border-radius: 10px;
   max-height: 600px;
   min-width: 200px;
   padding: 10px;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
+  border-radius: 15px;
 }
 
 .Transaction {
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 0px 10px
+  padding: 0px 10px;
   /* margin: 10px 0px 10px 0px */
 }
 
@@ -188,12 +181,11 @@ border-radius: 10px;
   overflow: auto;
   height: fit-content;
   max-height: 600px;
-  flex:1;
+  flex: 1;
   min-width: 200px;
   box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
   padding: 10px;
   border-radius: 15px;
-
 }
 
 .Portfilio-Div {
@@ -207,118 +199,119 @@ border-radius: 10px;
   flex: 1 1;
   min-width: 300px;
   padding: 10px;
-
-  
 }
 
 .Portfolo-Stock-Card {
- 
   display: flex;
   flex-direction: column;
   text-align: center;
   border-radius: 10px;
   justify-content: space-between;
   flex-direction: row;
-  padding: 10px 10px
+  padding: 10px 10px;
 }
 
 .Portfolo-Stock-Card:hover {
- 
   background-color: rgb(227, 227, 227);
-
-  /* display: flex;
-  flex-direction: column;
-  text-align: center;
-  border-radius: 10px;
-  justify-content: space-between;
-  flex-direction: row;
-  padding: 10px 10px */
 }
 
-
-
-
-
-.Portfolio-Stock-Up{
-
+.Portfolio-Stock-Up {
   border-radius: 10px;
   background-color: #2fe7a5;
   width: 100px;
   text-align: center;
- 
-
 }
 
-.Portfolio-Stock-Down{
-
+.Portfolio-Stock-Down {
   border-radius: 10px;
   background-color: rgb(255, 127, 127);
   width: 100px;
   text-align: center;
 }
 
-.Portfolio-Stock-Equal{
-
+.Portfolio-Stock-Equal {
   border-radius: 10px;
   background-color: rgb(183, 176, 176);
   width: 100px;
   text-align: center;
-  
 }
 
+/*------- Stock Search --------*/
 
-
-.Stock-Info-Container{
-  display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: space-between;
+.SearchBar {
+  align-items: center;
 }
 
 .StockSearch {
   display: flex;
   flex-direction: column;
   margin: 30px;
-  flex:1;
-
-
-
+  flex: 1;
 }
 
 .Stock-Search-Container {
-  /* border: 3px rgb(41, 41, 41) solid; */
   border-radius: 15px;
   height: fit-content;
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09)
-  
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
 }
 
-.SearchInput{
-  width: 400px;
+.SearchInput {
+  min-width: 100px;
   height: 50px;
   text-align: left;
   font-size: 30px;
   font-weight: bold;
   border: none;
-  margin: 5px
+  margin: 5px;
+  border: 0;
+  outline: 0;
+}
 
+/*------Stock Show  -------*/
+.StockView {
+  margin-top: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  background-color: white;
+  transition-duration: 0.3s;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09);
+  border-radius: 10px;
+  line-height: 8px;
+}
+
+.Stock-Down {
+  color: rgb(255, 37, 37);
+  font-weight: bold;
+}
+
+.Stock-Up {
+  color: #2fe7a5;
+  font-weight: bold;
 }
 
 .Qty-Input {
-  border: 1px lightgrey solid
-  /* border-bottom: 2px solid rgb(0, 0, 0); */
+  width: 60px;
+  border: 0;
+  outline: 0;
+  border-bottom: 2px solid #9b9b9b;
+  color: #111;
+  font-size: 25px;
+  margin: 15px;
+  background: none;
+  align-self: center;
+  text-decoration: none;
+  text-align: center;
 }
 
-input:focus{
-  outline: none;
-
+.Qty-Input:focus {
+  width: 100px;
+  color: #3e3e3e;
+  transition: 0.2s all;
+  cursor: text;
+  border-color: #45359d;
 }
-
-.SearchBar {
-  align-items: center;
-}
-
-
 
 /*------- Buttons --------*/
 .button {
@@ -326,7 +319,7 @@ input:focus{
   border-radius: 4px;
   background-color: #f4511e;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   font-size: 28px;
   padding: 20px;
@@ -345,7 +338,7 @@ input:focus{
 }
 
 .button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -364,126 +357,107 @@ input:focus{
 
 /* Toggle Button */
 
-.btn-group {
-}
-
 .toggle-button {
-  /* box-shadow: 0 0 px 1px rgba(0, 0, 0, 0.01), 0 3px 24px rgba(48, 51, 51, 0.09); */
   background-color: #6a6a6a;
   border: none;
   color: white;
   padding: 5px 32px;
-  
+
   text-align: center;
   font-size: 16px;
   cursor: pointer;
   font-weight: 300;
   border: 1px black solid;
   border-radius: 1px;
-
-
 }
 
 .btn-group .toggle-button:hover {
   background-color: #303030;
 }
 
-button:focus { outline: none;
-  background-color: black
- }
+button:focus {
+  outline: none;
+  background-color: black;
+}
 
- /* Registration button */
+/* Registration button */
 
-
-
- div[class*=box] {
-	height: 100%;
-	width: 100%; 
+div[class*="box"] {
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 4px;
 }
 
-.box-1 { background-color: #45359d; }
-.box-2 { background-color: #6b74cc; }
-
+.box-1 {
+  background-color: #45359d;
+}
+.box-2 {
+  background-color: #6b74cc;
+}
 
 .btn {
-	line-height: 50px;
-	height: 50px;
-	text-align: center;
-	width: 250px;
+  line-height: 50px;
+  height: 50px;
+  text-align: center;
+  width: 250px;
   cursor: pointer;
   padding: 0px;
   border-radius: 4px;
   font-size: 20px;
- 
 }
-
-
-/* Registration buttons */
 
 .btn-registration {
-	color: #FFF;
-	transition: all 0.3s;
-	position: relative;
+  color: #fff;
+  transition: all 0.3s;
+  position: relative;
 }
 .btn-registration span {
-	transition: all 0.3s;
-}
-/* 
-.btn-registration  {
   transition: all 0.3s;
- 
-} */
+}
+
 .btn-registration::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: all 0.3s;
-	border-top-width: 1px;
-	border-bottom-width: 1px;
-	border-top-style: solid;
-	border-bottom-style: solid;
-	border-top-color: rgba(255,255,255,0.5);
-	border-bottom-color: rgba(255,255,255,0.5);
-	transform: scale(0.1, 1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.3s;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+  border-top-color: rgba(255, 255, 255, 0.5);
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+  transform: scale(0.1, 1);
 }
 .btn-registration:hover span {
-	letter-spacing: 2px;
+  letter-spacing: 2px;
 }
 .btn-registration:hover::before {
-	opacity: 1;	
-	transform: scale(1, 1);	
+  opacity: 1;
+  transform: scale(1, 1);
 }
 .btn-registration::after {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	transition: all 0.3s;
-	background-color: rgba(255,255,255,0.1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  transition: all 0.3s;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 .btn-registration:hover::after {
-	opacity: 0;	
-	transform: scale(0.1, 1);
+  opacity: 0;
+  transform: scale(0.1, 1);
 }
-
-
-
-
-
-
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -501,7 +475,6 @@ button:focus { outline: none;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 
 .App-link {
   color: #61dafb;
