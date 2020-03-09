@@ -9,7 +9,7 @@ state = {
       errors: ''
      };
   
-  componentWillMount() {
+  componentdidlMount() {
     return this.props.loggedInStatus ? this.redirect() : null
   }
 handleChange = (event) => {
@@ -21,18 +21,20 @@ handleChange = (event) => {
 handleSubmit = (event) => {
     event.preventDefault()
     const {username, email, password} = this.state
-let user = {
+
+    let user = {
       username: username,
       email: email,
       password: password
     }
-    
     axios.post('https://fast-savannah-59172.herokuapp.com/login', {user}, {withCredentials: true})
     .then(response => {
       if (response.data.logged_in) {
         this.props.handleLogin(response.data)
+        console.log("Handle submit response", response)
         this.redirect()
       } else {
+        console.log("Handle Submit error", response)
         this.setState({
           errors: response.data.errors
         })

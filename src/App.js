@@ -15,7 +15,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.loginStatus();
+    this.loginStatus()
   }
 
   loginStatus = () => {
@@ -23,11 +23,20 @@ class App extends Component {
       .get("https://fast-savannah-59172.herokuapp.com/logged_in", { withCredentials: true })
       .then(response => {
         if (response.data.logged_in) {
+          // this.setState({
+          //   user: response.data.user,
+          //   isLoggedIn: true
+            
+          // });
           this.setState({
             user: response.data.user,
-            isLoggedIn: true
-          });
+            isLoggedIn: true})
+          this.handleLogin(response.data)
+          console.log("Login Status true", response.data)
+
         } else {
+          console.log("Login Status False", response.data)
+
           this.handleLogout();
         }
       })
