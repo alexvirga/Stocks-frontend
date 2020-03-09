@@ -42,7 +42,6 @@ class Dashboard extends Component {
       stockArr: user.data.trades.map(stock => stock.stock),
       viewStock: false
     });
-    console.log(user);
   };
 
   render() {

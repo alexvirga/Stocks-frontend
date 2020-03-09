@@ -39,7 +39,6 @@ class ShowStock extends Component {
       .then(response => {
         if (response) {
           this.props.handlePurchase(response);
-          console.log("created purchase resp", response);
         } else {
           this.setState({ errors: response.data.errors });
         }
@@ -65,10 +64,8 @@ class ShowStock extends Component {
         .then(response => {
           if (response.data.status === "created") {
             this.handlePurchase(price, user, qty, symbol);
-            console.log("created", response.data);
           } else {
             this.setState({ errors: response.data.errors });
-            console.log("created", response.data.errors);
           }
         });
     }
@@ -77,7 +74,6 @@ class ShowStock extends Component {
   handleErrors = () => {
     return (
       <div>
-
         {this.state.errors.map(error => {
           return <p key={error}>{error}</p>;
         })}
@@ -95,7 +91,6 @@ class ShowStock extends Component {
 
     return (
       <div className={"StockView"}>
-        {/* <div className={"Close-Button"} onClick={this.props.closeStock}>x</div> */}
         <h3> {this.props.stock.symbol} </h3>
         <p> {this.props.stock.companyName} </p>
         <h2> ${this.props.stock.latestPrice} </h2>
@@ -108,8 +103,6 @@ class ShowStock extends Component {
           <input
             className="Qty-Input"
             type="number"
-            
-          
             onChange={this.handleQtyChange}
           ></input>
         </div>
@@ -132,6 +125,7 @@ class ShowStock extends Component {
           <span>Buy </span>
         </button>
         <div>{this.state.errors ? this.handleErrors() : null}</div>
+        <div>{this.state.error ? <p> {this.state.error} </p> : null}</div>
       </div>
     );
   }

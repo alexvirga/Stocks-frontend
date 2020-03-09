@@ -21,12 +21,10 @@ class Navbar extends Component {
       .put(`https://fast-savannah-59172.herokuapp.com/users/${this.props.user.id}`, {
         balance: 4000
       })
-      // .then(res => console.log(res.data))
       .catch(error => console.log("api errors:", error));
   }
 
   render() {
-    // console.log(this.props.user)
     return (
       <div className="Navbar">
         <div className="Navbar-menu"> 
@@ -37,8 +35,6 @@ class Navbar extends Component {
     
 
         <h2> Balance: ${this.props.balance} </h2>
-       
-        {/* <h4> {this.props.user.username}</h4> */}
         <Link to="/" onClick={this.handleClick}>
           Log Out
         </Link>

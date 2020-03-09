@@ -9,7 +9,6 @@ class Transactions extends Component {
             <h4> {trade.stock} </h4>
 
             <h4 style={{ fontWeight: "normal" }}>
-              {" "}
               {trade.quantity} Share(s) @ ${trade.cost_per_share}
             </h4>
           </div>

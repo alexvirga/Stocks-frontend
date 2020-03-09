@@ -103,10 +103,6 @@ class PortfolioStockCard extends Component {
                 &nbsp;&nbsp;
                 <h4>${this.props.trade.value.toFixed(2)} </h4>
               </span>
-              {/* <h4 style={{ fontWeight: "normal" }}>
-                {" "}
-                {(this.props.liveData.changePercent * 100).toFixed(2)}%
-              </h4> */}
             </span>
           </div>
         )}

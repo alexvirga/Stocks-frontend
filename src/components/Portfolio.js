@@ -4,12 +4,10 @@ import PortfolioStockCard from "./PortfolioStockCard";
 
 class Portfolio extends Component {
   state = {
-    user: {},
-    stocks: [],
-    stockMap: {},
     stockArr: [],
     liveData: [],
-    isLoading: false
+    isLoading: false,
+  
   };
 
   componentDidMount() {
@@ -28,18 +26,16 @@ class Portfolio extends Component {
     this.setState({ isLoading: true });
     let uniqueStockArray = [...new Set(stockArr)];
     let uniqueStockString = uniqueStockArray.toString();
-    // console.log(uniqueStockString)
-    // setInterval(() => {
     axios
       .get(
         `https://cloud.iexapis.com/stable/stock/market/batch?symbols=${uniqueStockString}&types=quote&range=1m&last=5&token=${process.env.REACT_APP_API_KEY}`
       )
       .then(
         response => this.setState({ liveData: response.data, isLoading: false })
-        // error => {console.log(error)}
+      
       );
 
-    //   },100000)
+   
   };
 
   handlestocks = stocks => {
@@ -69,6 +65,7 @@ class Portfolio extends Component {
   render() {
     return (
       <div className="Portfolio-Container">
+    
         {this.state.stockArr.length > 0 && !this.state.isLoading
           ? this.state.stockArr.map(trade => (
               <PortfolioStockCard
@@ -80,11 +77,6 @@ class Portfolio extends Component {
             ))
           : null}
       </div>
-
-      //   <div className="Transactions-Container">
-      //       {this.props.user.trades ? this.props.user.trades.map(trade => console.log(trade.stock)) : null}
-
-      //   </div>
     );
   }
 }
