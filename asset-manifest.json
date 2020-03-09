@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Stocks-frontend/static/css/main.d5dda83b.chunk.css",
+    "main.js": "/Stocks-frontend/static/js/main.1020f77c.chunk.js",
+    "main.js.map": "/Stocks-frontend/static/js/main.1020f77c.chunk.js.map",
+    "runtime-main.js": "/Stocks-frontend/static/js/runtime-main.40ffde2e.js",
+    "runtime-main.js.map": "/Stocks-frontend/static/js/runtime-main.40ffde2e.js.map",
+    "static/js/2.3ce5e175.chunk.js": "/Stocks-frontend/static/js/2.3ce5e175.chunk.js",
+    "static/js/2.3ce5e175.chunk.js.map": "/Stocks-frontend/static/js/2.3ce5e175.chunk.js.map",
+    "index.html": "/Stocks-frontend/index.html",
+    "precache-manifest.9315ad10c234cf88eb240dbc4d2b6d02.js": "/Stocks-frontend/precache-manifest.9315ad10c234cf88eb240dbc4d2b6d02.js",
+    "service-worker.js": "/Stocks-frontend/service-worker.js",
+    "static/css/main.d5dda83b.chunk.css.map": "/Stocks-frontend/static/css/main.d5dda83b.chunk.css.map",
+    "static/js/2.3ce5e175.chunk.js.LICENSE.txt": "/Stocks-frontend/static/js/2.3ce5e175.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40ffde2e.js",
+    "static/js/2.3ce5e175.chunk.js",
+    "static/css/main.d5dda83b.chunk.css",
+    "static/js/main.1020f77c.chunk.js"
+  ]
+}
