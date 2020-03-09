@@ -21,6 +21,11 @@ h4 {
   margin: 10px 0px 10px 0px;
 }
 
+p {
+  margin: 10px 0px 10px 0px;
+  
+}
+
 /*----- Homepage ------*/
 
 .Homepage {
@@ -218,21 +223,21 @@ h4 {
 .Portfolio-Stock-Up {
   border-radius: 10px;
   background-color: #2fe7a5;
-  width: 100px;
+  width: 110px;
   text-align: center;
 }
 
 .Portfolio-Stock-Down {
   border-radius: 10px;
   background-color: rgb(255, 127, 127);
-  width: 100px;
+  width: 110px;
   text-align: center;
 }
 
 .Portfolio-Stock-Equal {
   border-radius: 10px;
   background-color: rgb(183, 176, 176);
-  width: 100px;
+  width: 110px;
   text-align: center;
 }
 

@@ -2,30 +2,24 @@ import React, { Component } from "react";
 
 class PortfolioStockCard extends Component {
   latestPricePerformance = () => {
-    if (this.props.liveData.change < 0) {
+    let priceChangeToday = this.props.liveData.change
+    if (priceChangeToday < 0) {
       return "Portfolio-Stock-Down";
-    } else if (this.props.liveData.change > 0) {
+    } else if (priceChangeToday > 0) {
       return "Portfolio-Stock-Up";
-    } else if ((this.props.liveData.change === 0)) {
+    } else if (priceChangeToday === 0) {
       return "Portfolio-Stock-Equal";
     }
   };
 
   equityPerformance = () => {
-    if (
-      this.props.liveData.latestPrice * this.props.trade.quantity <
-      this.props.trade.value
-    ) {
+    let currentEquityValue = this.props.liveData.latestPrice * this.props.trade.quantity;
+    let totalStockCost = this.props.trade.value;
+    if (currentEquityValue < totalStockCost) {
       return "Portfolio-Stock-Down";
-    } else if (
-      this.props.liveData.latestPrice * this.props.trade.quantity >
-      this.props.trade.value
-    ) {
+    } else if (currentEquityValue > totalStockCost) {
       return "Portfolio-Stock-Up";
-    } else if (
-      this.props.liveData.latestPrice * this.props.trade.quantity ===
-      this.props.trade.value
-    ) {
+    } else if (currentEquityValue === totalStockCost) {
       return "Portfolio-Stock-Equal";
     }
   };
@@ -43,7 +37,6 @@ class PortfolioStockCard extends Component {
               }}
             >
               <h4> {this.props.trade.stock} </h4>
-  
 
               <h4 style={{ fontWeight: "normal" }}>
                 {this.props.trade.quantity} Share(s)
@@ -98,7 +91,18 @@ class PortfolioStockCard extends Component {
                   ).toFixed(2)}{" "}
                 </h4>
               </span>
-              <h4> ${this.props.trade.value.toFixed(2)} </h4>
+
+              <span
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  alignContent: "center"
+                }}
+              >
+                <p> Cost: </p>
+                &nbsp;&nbsp;
+                <h4>${this.props.trade.value.toFixed(2)} </h4>
+              </span>
               {/* <h4 style={{ fontWeight: "normal" }}>
                 {" "}
                 {(this.props.liveData.changePercent * 100).toFixed(2)}%

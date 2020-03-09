@@ -7,7 +7,6 @@ import Login from "./components/registrations/Login";
 import Signup from "./components/registrations/Signup";
 import "./App.css";
 
-
 class App extends Component {
   state = {
     isLoggedIn: false,
@@ -15,28 +14,22 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.loginStatus()
+    this.loginStatus();
   }
 
   loginStatus = () => {
     axios
-      .get("https://fast-savannah-59172.herokuapp.com/logged_in", { withCredentials: true })
+      .get("https://fast-savannah-59172.herokuapp.com/logged_in", {
+        withCredentials: true
+      })
       .then(response => {
         if (response.data.logged_in) {
-          // this.setState({
-          //   user: response.data.user,
-          //   isLoggedIn: true
-            
-          // });
           this.setState({
             user: response.data.user,
-            isLoggedIn: true})
-          this.handleLogin(response.data)
-          console.log("Login Status true", response.data)
-
+            isLoggedIn: true
+          });
+          this.handleLogin(response.data);
         } else {
-          console.log("Login Status False", response.data)
-
           this.handleLogout();
         }
       })

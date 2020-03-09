@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 
-
 class Transactions extends Component {
-
-
-
   render() {
     return (
-        
       <div className="Transactions-Container">
         {this.props.trades.map(trade => (
           <div key={trade.id} className="Transaction">
