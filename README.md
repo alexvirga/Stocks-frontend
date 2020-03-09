@@ -29,3 +29,11 @@ Ex. If the value of your shares is greater than the cost, value will be displaye
 <img width="529" alt="Screen Shot 2020-03-09 at 3 10 20 PM" src="https://user-images.githubusercontent.com/49658469/76249310-6f588c80-6219-11ea-9e5e-7e10d6ceae4b.png">
 
 
+#### Refreshing portfolio data
+
+Due to limited API calls remaining on free tier, users are required to refresh the page to retrieve the most recent stock data. 
+
+
+
+
+
